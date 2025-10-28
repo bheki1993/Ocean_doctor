@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Ocean Doctor | Maritime Healthcare Solutions</title>
+  <title>Ocean Doctor</title>
 
   <!-- Fonts and icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -86,7 +86,10 @@
 
 
     /* CTA floating */
-    .fab{position:fixed;right:20px;bottom:22px;background:var(--accent);color:white;border-radius:999px;padding:12px 18px;font-weight:700;box-shadow:0 10px 30px rgba(43,108,176,0.25);z-index:1200; text-decoration: none;}
+    /*.fab{position:fixed;right:20px;bottom:22px;background:var(--accent);color:white;border-radius:999px;padding:12px 18px;font-weight:700;box-shadow:0 10px 30px rgba(43,108,176,0.25);z-index:1200; text-decoration: none;}*/
+    /*.fab{position:fixed;right:20px;bottom:22px;background:var(--accent);color:white;border-radius:999px;padding:12px 18px;font-weight:700; text-decoration: none;}*/
+    .btn.third{position:fixed;right:20px;bottom:22px;background:var(--accent);color:#fff;border:0;padding:12px 20px;border-radius:999px;font-weight:700;cursor:pointer;text-decoration:none; display: inline-flex; gap: 8px; transition: background-color 0.2s ease;}
+
 
     /* HERO */
     .hero{min-height:80vh;display:grid;place-items:center;text-align:center;padding:80px 20px;background:linear-gradient(180deg, rgba(6,20,35,0.6), rgba(6,20,35,0.6)), url('assets/New background.jpg') center/cover no-repeat;color:#fff}
@@ -217,13 +220,14 @@
     </div>
   </header>
 
-  <a class="fab" href="#contact">Get in Touch</a>
+  <a class="btn third" href="#contact">Get in Touch</a>
 
   <main>
     <section id="home" class="hero" role="region" aria-label="Hero">
       <div class="inner container">
-        <h1>Telemedicine built for fishing crews & maritime teams</h1>
-        <p class="lead">SAHPRA-approved telemedicine kits and 24/7 access to qualified doctors — designed to reduce medical evacuations, keep operations running and protect crew wellbeing.</p>
+        <h1>Your Doctor on Deck.</h1>
+        <h2 style="color: white;">Immediate 24/7 Healthcare access for all manner of Maritime Crews.</h2>
+        <p class="lead">Reduce Medical logistics, maintain operations and care for your crew with our SAHPRA-approved telemedicine kits and 24/7 access to our team of qualified Medical Doctors.</p>
         <div class="actions">
           <a class="btn" href="#services">Explore Services</a>
           <a class="btn secondary" href="#about">Meet our team</a>
@@ -235,8 +239,9 @@
       <div class="container">
         <h2 style="text-align: center;"id="about-title">About Ocean Doctor</h2>
         <p class="lead-muted" style="text-align: center;">Ocean Doctor (PTY) Ltd is the first Telemedicine provider tailored for the fishing and maritime industry in Southern Africa. Our SAHPRA-approved technology ensures 24/7 access to qualified doctors, delivering seamless healthcare to crews at sea, enhancing safety and operational efficiency.</p>
-
+        
         <!-- Team grid -->
+         <!-- 
         <div class="team-grid" role="list">
             <article class="card" role="listitem">
               <div class="media">
@@ -280,8 +285,9 @@
                 </div>
             </article>
         </div>
-
+        -->
         <!-- Hidden modal bios -->
+         <!--
         <div id="bio-sage" class="modal" aria-hidden="true">
           <div class="panel" role="dialog" aria-modal="true" aria-labelledby="sage-title">
             <header>
@@ -317,6 +323,7 @@
         </div>
       </div>
     </section>
+    -->
 
     <section id="services" aria-labelledby="services-title">
       <div class="container">
