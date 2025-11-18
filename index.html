@@ -36,7 +36,7 @@
       --card:#ffffff;
       --glass: rgba(255,255,255,0.6);
       --radius:14px;
-      --container:1200px;
+      --container:1550px;
     }
 
     /* Reset */
@@ -56,7 +56,7 @@
     .container{max-width:var(--container);margin:0 auto;padding:0 20px}
 
     /* NAVBAR (accessible, sticky with backdrop blur) */
-    header{position:sticky;top:0;z-index:1200}
+    header{position:-ms-page;top:0;z-index:1200}
     .nav-inner{
       display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:linear-gradient(90deg,var(--nav-start),var(--nav-end));color:#fff;backdrop-filter:blur(6px);box-shadow:0 6px 18px rgba(10,25,50,0.15);
     }
@@ -65,7 +65,7 @@
     .brand h4{font-family:'Montserrat';letter-spacing:0.2px;margin:0;font-size:1rem}
 
     /* Desktop nav */
-    nav ul{list-style:none;display:flex;gap:20px;margin:0;padding:0;align-items:center}
+    nav ul{list-style:none;display:flex;gap:px;margin:0;padding:0;align-items:normal}
     nav a{color:#eaf4ff;text-decoration:none;padding:10px 14px;border-radius:12px;font-weight:600; transition: background-color 0.2s ease;}
     nav a[aria-current='page'],nav a:hover{background:rgba(255,255,255,0.08)}
 
