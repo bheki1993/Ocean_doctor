@@ -16,7 +16,7 @@
         }
         .container {
             background-color: #ffffff;
-            padding: 40px;
+            padding: 50px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
@@ -26,28 +26,34 @@
             padding-bottom: 10px;
         }
         h2 {
-            color: #007bff; /* Medical blue accent */
+            color: #007bff;
             margin-top: 0;
+            margin-bottom: 30px;
         }
         h3 {
             color: #2c3e50;
             margin-top: 30px;
             font-size: 1.2rem;
+            background-color: #f0f4f8;
+            padding: 10px;
+            border-radius: 4px;
         }
         h4 {
             color: #444;
+            margin-top: 25px;
             margin-bottom: 10px;
-            font-weight: 600;
+            font-weight: 700;
         }
         p {
             margin-bottom: 15px;
+            text-align: justify;
         }
         ul, ol {
             margin-bottom: 15px;
             padding-left: 25px;
         }
         li {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         .warning-box {
             background-color: #fff3f3;
@@ -55,22 +61,58 @@
             padding: 15px;
             margin: 20px 0;
         }
+        
+        /* Button Styles */
+        .btn-container {
+            text-align: center;
+            margin: 50px 0 30px 0;
+            padding: 30px;
+            background-color: #f1f8ff;
+            border-radius: 8px;
+            border: 1px solid #d1e7dd;
+        }
+        .accept-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .accept-btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        .accept-btn:active {
+            background-color: #004085;
+            transform: translateY(1px);
+        }
+
         .footer-link {
-            margin-top: 40px;
+            margin-top: 30px;
             padding-top: 20px;
             border-top: 1px solid #eaeaea;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            text-align: left;
         }
         .footer-cta {
-            margin-top: 20px;
+            margin-top: 25px;
             padding: 20px;
             background-color: #e9f7ef;
             border-radius: 5px;
             text-align: center;
+            border: 1px solid #c3e6cb;
         }
         .footer-cta h3 {
             margin: 0;
-            color: #27ae60;
+            background: none;
+            color: #155724;
+            font-size: 1.1rem;
+            padding: 0;
         }
     </style>
 </head>
@@ -81,101 +123,140 @@
     <h1>Terms of Service & Patient Consent</h1>
     <h2>Keeping you safe & sound.</h2>
 
+    <p><strong>Odox Health (Pty) Ltd. Client Consent and Terms & Conditions.</strong> </p>
+
     <h3>Protection of Personal Information (POPIA)</h3>
-    <p>As part of our obligations under the Protection of Personal Information Act 4 of 2013 (POPI Act), we seek your consent for the collection, processing, and sharing of your personal information. Please review the following:</p>
+    <p>As part of our obligations under the Protection of Personal Information Act 4 of 2013 (POPI Act), we seek your consent for the collection, processing, and sharing of your personal information. Please review the following: </p>
     <ol>
-        <li><strong>Collection of Personal Information:</strong> We may gather personal and health data from you, as well as from various sources such as medical records, paramedics, and other lawful channels, only when deemed necessary and relevant.</li>
-        <li><strong>Processing of Personal Information:</strong> Your information will be lawfully processed for treatment, referrals, communication, administration, reporting, and its relevant purposes.</li>
-        <li><strong>Recordkeeping of Personal Information:</strong> All data will be recorded and retained in compliance with the law, ensuring implemented security measures for protection.</li>
-        <li><strong>Sharing of Personal Information:</strong> Your information, including ICD-10 codes or otherwise, may be shared with practitioners, medical schemes, next-of-kin, and its authorised entities as necessary, with strict adherence to the law.</li>
-        <li><strong>Access to Personal Information:</strong> You have the right to access and request corrections or deletions to your medical records in accordance with relevant legislation and the Health Professions Council of South Africa (HPCSA).</li>
-        <li><strong>Accuracy of Information:</strong> Providing accurate information is crucial for effective treatment, communication, and billing. Notify us promptly of any changes.</li>
-        <li><strong>Concerns about Processing:</strong> Any concerns can be addressed with treating practitioners or the Information Officer of the practice. Complaints can be lodged with the Information Regulator (+27 (0) 10 023 5207 / +27 (0) 82 746 4173 / inforeg@justice.gov.za).</li>
-        <li><strong>Consent:</strong> By interacting with us, you consent to the processing and disclosure of your personal information (including ICD-10 codes of your diagnosis) as outlined in this document. Such consent is provided voluntarily. You may withdraw consent at any time, understanding potential impacts on care provision and billing.</li>
+        <li><strong>Collection of Personal Information:</strong> We may gather personal and health data from you, as well as from various sources such as medical records, paramedics, and other lawful channels, only when deemed necessary and relevant. </li>
+        <li><strong>Processing of Personal Information:</strong> Your information will be lawfully processed for treatment, referrals, communication, administration, reporting, and its relevant purposes. </li>
+        <li><strong>Recordkeeping of Personal Information:</strong> All data will be recorded and retained in compliance with the law, ensuring implemented security measures for protection. </li>
+        <li><strong>Sharing of Personal Information:</strong> Your information, including ICD-10 codes or otherwise, may be shared with practitioners, medical schemes, next-of-kin, and its authorised entities as necessary, with strict adherence to the law. </li>
+        <li><strong>Access to Personal Information:</strong> You have the right to access and request corrections or deletions to your medical records in accordance with relevant legislation and the Health Professions Council of South Africa (HPCSA). </li>
+        <li><strong>Accuracy of Information:</strong> Providing accurate information is crucial for effective treatment, communication, and billing. Notify us promptly of any changes. </li>
+        <li><strong>Concerns about Processing:</strong> Any concerns can be addressed with treating practitioners or the Information Officer of the practice. Complaints can be lodged with the Information Regulator (+27 (0) 10 023 5207 / +27 (0) 82 746 4173/ inforeg@justice.gov.za). </li>
+        <li><strong>Consent:</strong> By signing below, you consent to the processing and disclosure of your personal information (including ICD-10 codes of your diagnosis) as outlined in this document. Such consent is provided voluntarily. You may withdraw consent at any time, understanding potential impacts on care provision and billing. </li>
     </ol>
 
     <hr>
 
     <h3>Statement of Consent to Data Processing</h3>
-    <p><em>(In terms of the provisions of the POPI Act)</em></p>
+    <p><em>(In terms of the provisions of the POPI Act)</em> </p>
     <ol>
-        <li>By clicking "I accept/acknowledge" and continuing interaction with Odox Health, I herewith consent to Odox Health and its representative/administrative staff collecting and having access to my personal information, and processing my personal data for valid purposes.</li>
-        <li>I am aware that I may withdraw my consent at any time by contacting Odox Health (on info@oceandoctor.co.za), and using the relevant Consent Withdrawal Form.</li>
-        <li>I confirm the accuracy and completeness of the provided client information, acknowledging its treatment with strict confidentiality.</li>
-        <li>In accordance with the POPI Act, I accept that my personal information will only be utilised for the purpose it was collected, that the information will only be retained for as long as is necessary and required by law, and that I have the right to view such information at any time, as well as request correction or deletion of my personal information held by Odox Health.</li>
-        <li>I expressly consent Odox Health and its representative/administrative staff to collect and process this information for the purpose of rendering services to me as well as processing claims with medical schemes or insurance funders.</li>
-        <li>I expressly consent to Odox Health and its representative/administrative staff handing over any outstanding accounts to debt collection third parties.</li>
-        <li>I expressly consent to Odox Health and its representative/administrative staff having access to my personal information contained in my health record, including any clinical notes, in order to process claims to medical schemes, issuing of documentation or any other administrative function required by Odox Health.</li>
-        <li>I expressly consent to Odox Health and its representative/administrative staff using my personal information to communicate with me in person/via telephone/email/video call/fax/WhatsApp/any form of social media.</li>
-        <li>I expressly consent that the Management Group/Society to which Odox Health belongs be provided with such of my personal health information to enable them to render certain administrative services including coding queries, billing issues and audit assistance.</li>
-        <li>I expressly consent that Odox Health may discuss any of my personal health information with any of the other members of the Clinical Team that may at any stage of my treatment be involved in providing health care services to me and to forward such information to a referring Health Care Practitioner.</li>
-        <li>I agree to the capture of my photograph by Odox Health or medical personnel solely for record-keeping purposes, with no use of client photographs for social media.</li>
-        <li>I acknowledge liability for the consultation fee payable today, or the fee where applicable for healthcare services as discussed with an Odox Health representative.</li>
+        <li>By clicking "I accept/acknowledge" and continuing interaction with Odox Health, I herewith consent to Odox Health and its representative/administrative staff collecting and having access to my personal information, and processing my personal data for valid purposes. </li>
+        <li>I am aware that I may withdraw my consent at any time by contacting Odox Health (on info@oceandoctor.co.za), and using the relevant Consent Withdrawal Form. </li>
+        <li>I confirm the accuracy and completeness of the provided client information, acknowledging its treatment with strict confidentiality. </li>
+        <li>In accordance with the POPI Act, I accept that my personal information will only be utilised for the purpose it was collected, that the information will only be retained for as long as is necessary and required by law, and that I have the right to view such information at any time, as well as request correction or deletion of my personal information held by Odox Health. </li>
+        <li>I expressly consent Odox Health and its representative/administrative staff to collect and process this information for the purpose of rendering services to me as well as processing claims with medical schemes or insurance funders. </li>
+        <li>I expressly consent to Odox Health and its representative/administrative staff handing over any outstanding accounts to debt collection third parties. </li>
+        <li>I expressly consent to Odox Health and its representative/administrative staff having access to my personal information contained in my health record, including any clinical notes, in order to process claims to medical schemes, issuing of documentation or any other administrative function required by Odox Health. </li>
+        <li>I expressly consent to Odox Health and its representative/administrative staff using my personal information to communicate with me in person/via telephone/email/video call/fax/WhatsApp/any form of social media. </li>
+        <li>I expressly consent that the Management Group/Society to which Odox Health belongs be provided with such of my personal health information to enable them to render certain administrative services including coding queries, billing issues and audit assistance. </li>
+        <li>I expressly consent that Odox Health may discuss any of my personal health information with any of the other members of the Clinical Team that may at any stage of my treatment be involved in providing health care services to me and to forward such information to a referring Health Care Practitioner. </li>
+        <li>I agree to the capture of my photograph by Odox Health or medical personnel solely for record-keeping purposes, with no use of client photographs for social media. </li>
+        <li>I acknowledge liability for the consultation fee payable today, or the fee where applicable for healthcare services as discussed with an Odox Health representative. </li>
     </ol>
 
+    <h3>Disclaimer: Scope of Services, Telemedicine Limitations, and HPCSA Compliance. </h3>
+    
     <div class="warning-box">
-        <h3>Disclaimer: Scope of Services & Emergencies</h3>
-        <p><strong>Odox Health (including its partners) is not an emergency medical service provider.</strong> In the event of a medical emergency, clients are strongly advised to immediately contact emergency services on <strong>10177</strong> or visit the nearest hospital emergency room. Telemedicine services are not suitable for emergencies and should not be relied upon in urgent situations.</p>
+        <h4>1. Not an Emergency Medical Service.</h4>
+        <p>Odox Health (including its partners) is not an emergency medical service provider. In the event of a medical emergency, clients are strongly advised to immediately contact emergency services on 10177 or visit the nearest hospital emergency room. Telemedicine services are not suitable for emergencies and should not be relied upon in urgent situations. </p>
     </div>
 
-    <h4>Limitations of Telemedicine</h4>
-    <p>While Odox Health offers telemedicine services, please be advised that telemedicine cannot guarantee a specific diagnosis or recovery outcome. Remote consultations are limited by the quality and detail of information available and the nature of the conditions being discussed. Telemedicine is a tool for general guidance, ongoing management, and consultation, but it cannot replace in-person medical assessments when a physical examination or direct intervention is required.</p>
+    <h4>2. Limitations of Telemedicine.</h4>
+    <p>While Odox Health offers telemedicine services, please be advised that telemedicine cannot guarantee a specific diagnosis or recovery outcome. Remote consultations are limited by the quality and detail of information available and the nature of the conditions being discussed. Telemedicine is a tool for general guidance, ongoing management, and consultation, but it cannot replace in-person medical assessments when a physical examination or direct intervention is required. </p>
 
-    <h4>Compliance with HPCSA Guidelines</h4>
-    <p>Odox Health adheres strictly to the Health Professions Council of South Africa (HPCSA) guidelines regarding the provision of telemedicine services. This ensures that all telemedicine consultations are carried out by registered healthcare professionals who are competent in the provision of such services. Client privacy and confidentiality are maintained in full compliance with POPIA.</p>
+    <h4>3. Compliance with HPCSA Guidelines.</h4>
+    <p>Odox Health adheres strictly to the Health Professions Council of South Africa (HPCSA) guidelines regarding the provision of telemedicine services. This ensures that all telemedicine consultations are carried out by registered healthcare professionals who are competent in the provision of such services. Client privacy and confidentiality are maintained in full compliance with the Protection of Personal Information Act (POPIA) and all relevant healthcare legislation. </p>
 
-    <h3>Client Responsibility & Informed Consent</h3>
-    <ul>
-        <li><strong>Full Disclosure:</strong> It is the client's responsibility to provide accurate, complete, and up-to-date information regarding their medical history, current symptoms, and any other relevant factors. Failure to disclose pertinent health information could affect the accuracy of the consultation, diagnosis, and treatment options.</li>
-        <li><strong>Informed Consent:</strong> By engaging in telemedicine services, clients acknowledge they have been informed of the limitations and potential risks. Clients agree to follow any recommendations for further testing, diagnosis, or in-person consultations. regarding in-person visits, I understand that the healthcare professional may perform routine and minor procedures as part of my treatment plan.</li>
-        <li><strong>Referral for In-Person Consultation:</strong> If the healthcare provider deems it necessary, they may recommend an in-person consultation. It is the responsibility of the client to act on these recommendations.</li>
-        <li><strong>Record-keeping:</strong> All client information will be confidentially stored and securely handled as per HPCSA and POPIA guidelines.</li>
-    </ul>
+    <h4>4. Client Responsibility and Full Disclosure.</h4>
+    <p>To ensure the best possible care, it is the client's responsibility to provide accurate, complete, and up-to-date information regarding their medical history, current symptoms, and any other relevant factors. Failure to disclose pertinent health information during a telemedicine consultation could affect the accuracy of the consultation, diagnosis, and treatment options. </p>
 
-    <h3>Acknowledgment of Telemedicine Limitations and Consent</h3>
-    <p>By proceeding with a telemedicine consultation, you acknowledge and agree to the following:</p>
+    <h4>5. Informed Consent.</h4>
+    <p>By engaging in telemedicine services with Odox Health, clients acknowledge that they have been informed of the limitations of telemedicine and the potential risks involved, including the fact that a complete or accurate diagnosis may not always be possible remotely. Clients provide their informed consent for remote consultations, understanding the limitations and agreeing to follow any recommendations for further testing, diagnosis, or in-person consultations. Regarding in-person visits, I understand that the healthcare professional may perform routine and minor procedures, as deemed medically necessary, as part of my treatment plan. These procedures will be discussed with me before being performed. </p>
+
+    <h4>6. Referral for In-Person Consultation.</h4>
+    <p>During a telemedicine consultation, if the healthcare provider deems it necessary for a thorough diagnosis, they may recommend that the client undergoes an in-person consultation or physical examination. It is the responsibility of the client to act on these recommendations to ensure the most accurate and comprehensive care. </p>
+
+    <h4>7. Scope of Practice.</h4>
+    <p>Odox Health professionals are bound by their scope of practice, as defined by the HPCSA, and will only provide services within their professional competencies. The healthcare provider will determine whether a telemedicine consultation is appropriate for the client's condition or if an in-person consultation is required. </p>
+
+    <h4>8. Record-keeping and Confidentiality.</h4>
+    <p>As per the HPCSA's ethical guidelines and POPIA, all client information gathered during telemedicine consultations will be confidentially stored and securely handled. Access to medical records is strictly controlled, and client consent is required for sharing personal health information with other healthcare providers or entities, as outlined in our Privacy and Data Protection Policy. </p>
+
+    <h4>9. Ongoing Care and Treatment.</h4>
+    <p>Clients understand that while telemedicine consultations provide medical advice, these services may require follow-up care or treatment plans that are best executed with an in-person examination. Clients are encouraged to follow through with any required follow-up appointments or further medical testing, as recommended by their healthcare provider. </p>
+
+    <h3>Acknowledgment of Telemedicine Limitations and Consent.</h3>
+    <p>By proceeding with a telemedicine consultation, you acknowledge and agree to the following: </p>
     <ol>
-        <li>Telemedicine services are not suitable for emergencies and cannot guarantee a diagnosis or recovery outcome;</li>
-        <li>I understand the limitations, risks, benefits, and consequences associated with telemedicine health, including technology failures or potential security breaches;</li>
-        <li>You will provide complete and accurate health information to the best of your ability;</li>
-        <li>You consent to remote consultations within the limitations of the medium;</li>
-        <li>You understand that Odox Health adheres to all HPCSA guidelines and the POPIA to ensure your data is handled appropriately.</li>
+        <li>Telemedicine services are not suitable for emergencies and cannot guarantee a diagnosis or recovery outcome; </li>
+        <li>I understand that there are limitations, risks, benefits, and consequences associated with telemedicine health, including but not limited to, disruption of transmission by technology failures, interruption and/or breaches of confidentiality by unauthorized persons, and/or limited ability to respond to emergencies; </li>
+        <li>You will provide complete and accurate health information to the best of your ability; </li>
+        <li>You consent to remote consultations within the limitations of the medium and understand the healthcare provider may refer you for an in-person consultation, if necessary. </li>
+        <li>You understand that Odox Health adheres to all HPCSA guidelines and the POPIA to ensure your data is handled appropriately. </li>
     </ol>
 
-    <hr>
+    <h3>Commencement of Consultation.</h3>
+    <p>A Telehealth Consultation is considered to have commenced once the healthcare provider and client engage in a text-based, voice-based, or video-based conversation with the intent of discussing the client's health concerns. Specifically, the consultation begins once the healthcare provider sends or communicates any message addressing the client's health query, providing medical advice, or requesting further information necessary for diagnosis, counselling, or treatment. </p>
 
-    <h3>Consultation & Cancellation Policies</h3>
+    <h3>Client Liability for Payment.</h3>
+    <ol>
+        <li>The client is liable for the consultation fee once the consultation has commenced, as defined above. </li>
+        <li>If the client chooses to terminate the consultation after it has commenced, they remain liable for the full consultation fee, unless the healthcare provider agrees to a reduced fee based on the nature of the service. </li>
+        <li>A consultation is deemed to have commenced even if the client does not respond after the healthcare provider has sent the initial consultation message. If the client does not respond for more than 15 minutes, the healthcare provider may terminate the consultation at their discretion. </li>
+    </ol>
 
-    <h4>Commencement of Consultation</h4>
-    <p>A Telehealth Consultation is considered to have commenced once the healthcare provider and client engage in a text-based, voice-based, or video-based conversation with the intent of discussing the client's health concerns.</p>
+    <h3>Cancellation Policy: </h3>
+    
+    <h4>Remote Consultation:</h4>
+    <p>If the client fails to cancel or reschedule their appointment at least one hour before the scheduled time, they may be required to pay a cancellation fee of 50% of the remote consultation fee at the time of booking. A "no-show" is considered when the client neither attends the appointment nor provides prior notice. </p>
 
-    <h4>Client Liability for Payment</h4>
+    <h4>Call-Out Consultation:</h4>
+    <p>If the client fails to cancel or reschedule their appointment at least two hours before the scheduled time, they may be required to pay a cancellation fee of 50% of the standard call-out consultation fee at the time of booking. A "no-show" is considered when the client neither attends the appointment nor provides prior notice. </p>
+
+    <h4>General Telemedicine Consultations:</h4>
+    <p>The client shall be entitled to this service. Every reasonable effort shall be made to accommodate requests in a timely manner; however, availability is subject to scheduling constraints, and delays may occur. This service is not an on-demand service, and clients may be required to book an appointment in advance. Sick notes, prescriptions, and referral letters shall be included in the consultation fee and shall not be billed separately, unless explicitly stated otherwise in the service description. </p>
+
+    <h4>Call-Out Consultations:</h4>
+    <p>Every reasonable effort shall be made to accommodate requests promptly; however, availability may be subject to scheduling constraints and location-based limitations. This service is not an on-demand service, and clients may be required to book an appointment. If disposable clinical materials or stat medications are required for diagnosis or treatment, the client shall be informed of any additional costs before proceeding. Such costs are not included in the standard consultation fee. Odox reserves the right to deny home visits or in-person concierge requests if the geographical location is deemed too distant, unsafe, or logistically impractical. Clients shall be notified accordingly if their request cannot be accommodated. </p>
+
+    <h4>Prescription Requests:</h4>
     <ul>
-        <li>The client is liable for the consultation fee once the consultation has commenced.</li>
-        <li>If the client terminates the consultation after it has commenced, they remain liable for the full fee.</li>
-        <li>A consultation is deemed to have commenced even if the client does not respond after the healthcare provider has sent the initial consultation message. If the client does not respond for more than 15 minutes, the provider may terminate the consultation at their discretion.</li>
+        <li>The client shall be entitled to this service. Every effort shall be made to accommodate requests; however, availability may be subject to delays, and advance booking may be required. </li>
+        <li>All prescriptions will be delivered electronically, either in scanned or photographed digital format, via email or WhatsApp, unless otherwise agreed in advance. </li>
+        <li>Prescriptions for scheduled or controlled medications (Schedules 3 to 6) will only be sent directly to the client's designated pharmacy, in line with applicable regulations. </li>
+        <li>Clients requiring physical (hardcopy) prescriptions are responsible for making such a request in advance, and all reasonable costs associated with printing and delivery will be for the client's account. </li>
+        <li>Clients are advised to confirm with their chosen pharmacy whether they require an original hardcopy, as pharmacies retain the right to request the original document under applicable pharmaceutical and regulatory guidelines. </li>
+        <li>The client acknowledges that all electronic prescriptions will be handled and transmitted in accordance with the Protection of Personal Information Act (POPIA) and other applicable privacy and data protection laws. </li>
+        <li>Controlled or scheduled medications shall not be prescribed without an initial general consultation. Repeat prescriptions may be subject to additional medical review and professional discretion. </li>
+        <li><strong>Prescription of Controlled or Scheduled Medications:</strong> Controlled or scheduled medications shall only be prescribed following an initial general consultation with a registered healthcare professional. Repeat prescriptions for such medications shall be subject to review and approval based on medical necessity and good healthcare practice. </li>
     </ul>
 
-    <h4>Cancellation Policy</h4>
+    <h4>Sick Notes / Medical Certificates:</h4>
     <ul>
-        <li><strong>Remote Consultation:</strong> Failure to cancel/reschedule at least <strong>one hour</strong> before the scheduled time may incur a cancellation fee of 50% of the remote consultation fee.</li>
-        <li><strong>Call-Out Consultation:</strong> Failure to cancel/reschedule at least <strong>two hours</strong> before the scheduled time may incur a cancellation fee of 50% of the standard call-out fee.</li>
+        <li>Sick notes shall be issued at the professional discretion of the medical doctor following a consultation. If a new sick note is required due to an extended illness, a follow-up consultation fee may apply. </li>
+        <li>If a medical professional reasonably determines that a client is misusing sick notes, extensions, or prescriptions, they reserve the right to refuse further issuance at their discretion. </li>
     </ul>
 
-    <h4>Prescription Requests</h4>
-    <p>All prescriptions will be delivered electronically. Prescriptions for scheduled or controlled medications (Schedules 3 to 6) will only be sent directly to the client's designated pharmacy. Controlled or scheduled medications shall not be prescribed without an initial general consultation.</p>
+    <h4>Referral Letters:</h4>
+    <p>Referral letters requested in isolation by new clients shall require at minimum a General Consultation via telemedicine, after which the referral letter shall be provided digitally. </p>
 
-    <h4>Sick Notes & Referral Letters</h4>
+    <h4>Follow-Up Appointments:</h4>
+    <p>A consultation shall be deemed a "follow-up appointment" if the client schedules a second consultation within seven (7) days of the initial consultation and the subject matter pertains to the same medical issue. If more than seven (7) days have elapsed, the determination of whether an appointment qualifies as a follow-up shall rest solely with the attending medical professional. Follow-up consultations must be booked by the client unless otherwise specified by the treating medical professional. Pricing details shall be clearly disclosed at the time of booking to ensure compliance with CPA transparency requirements. </p>
     <ul>
-        <li>Sick notes shall be issued at the professional discretion of the medical doctor following a consultation.</li>
-        <li>Referral letters requested in isolation by new clients shall require at minimum a General Consultation via telemedicine.</li>
+        <li>Where pathology tests or imaging results necessitate further consultation for medical treatment planning, such consultations shall be deemed follow-ups. </li>
+        <li>Communication of normal test results shall not incur additional charges. </li>
+        <li>Clients shall be informed in advance whether their abnormal test results require a mandatory follow-up consultation, ensuring transparency before any charges are incurred. </li>
     </ul>
 
-    <h4>Follow-Up Appointments</h4>
-    <p>A consultation shall be deemed a "follow-up" if the client schedules a second consultation within seven (7) days of the initial consultation and the subject matter pertains to the same medical issue. After 7 days, the determination rests with the attending medical professional.</p>
+    <h4>After-Hours Services:</h4>
+    <p>"After-Hours" shall refer to any medical or healthcare services rendered outside of standard operating hours, defined as 08h00 to 17h00, Monday to Friday. Odox reserves the right to apply additional fees for services provided during those hours, subject to prior notice given to the client. </p>
 
-    <h4>After-Hours Services</h4>
-    <p>"After-Hours" refers to services rendered outside of 08h00 to 17h00, Monday to Friday. Additional fees may apply.</p>
+   <!-- <div class="btn-container">
+        <button class="accept-btn" onclick="alert('Consent Acknowledged. You may now return to the intake form.')">I Accept / Acknowledge</button>
+    </div> -->
 
     <div class="footer-link">
         <p>click <a href="glossary.html" target="_blank"><em>here</em></a> to view our legal glossary.</p>
