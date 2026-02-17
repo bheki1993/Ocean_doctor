@@ -3,588 +3,2024 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Ocean Doctor</title>
+  <title>Ocean Doctor | Maritime Healthcare Solutions (PTY) Ltd</title>
+  <meta name="description" content="Ocean Doctor is Southern Africa's first dedicated maritime telemedicine provider. 24/7 access to qualified medical doctors for fishing and maritime crews — anytime, anywhere.">
 
-  <!-- Fonts and icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-  <!-- Favicons & theme -->
-  <meta name="theme-color" content="#1a4971">
 
-  <!-- Structured Data for organization (SEO) -->
+  <meta name="theme-color" content="#0b2a45">
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "Ocean Doctor (PTY) Ltd",
+    "description": "Southern Africa's first dedicated maritime telemedicine provider",
     "url": "https://oceandoctor.co.za",
     "logo": "https://oceandoctor.co.za/assets/Ocean Doc vector logo and words WHITE-cropped.png",
+    "email": "info@oceandoctor.co.za",
+    "areaServed": "Southern Africa",
     "sameAs": []
   }
   </script>
 
   <style>
-    :root{
-      --bg:#f4f7fb;
-      --nav-start:#1a4971;
-      --nav-end:#2b6cb0;
-      --accent:#2b6cb0;
-      --muted:#556574;
-      --card:#ffffff;
-      --glass: rgba(255,255,255,0.6);
-      --radius:14px;
-      --container:1550px;
+    /* ============================================
+       DESIGN TOKENS — extracted from flyer palette
+    ============================================ */
+    :root {
+      /* Primary navy-ocean palette */
+      --navy-deep:   #0b2a45;
+      --navy-mid:    #1a4971;
+      --navy-bright: #1e6091;
+      --ocean-blue:  #2b6cb0;
+      --sky:         #4a90d9;
+
+      /* Accent — warm orange/red from flyer highlights */
+      --accent:      #e05c28;
+      --accent-soft: #f4784a;
+
+      /* Teal accent (secondary from flyer logo) */
+      --teal:        #2ab4b4;
+      --teal-soft:   #4dd4d4;
+
+      /* Neutrals */
+      --bg:          #f0f5fb;
+      --surface:     #ffffff;
+      --surface-alt: #f7fafd;
+      --muted:       #4a5a6b;
+      --muted-light: #7a8fa0;
+      --border:      #dce8f5;
+
+      /* Typography */
+      --font-sans: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --font-head: 'Montserrat', 'Poppins', sans-serif;
+
+      /* Layout */
+      --container: 1200px;
+      --radius-sm: 10px;
+      --radius:    16px;
+      --radius-lg: 24px;
+
+      /* Shadows */
+      --shadow-sm: 0 2px 12px rgba(11,42,69,0.07);
+      --shadow:    0 8px 32px rgba(11,42,69,0.11);
+      --shadow-lg: 0 20px 60px rgba(11,42,69,0.16);
+
+      /* Transitions */
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* Reset */
-    *,*::before,*::after{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-      background:var(--bg);
-      color:var(--muted);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.5;
-      scroll-behavior:smooth;
+    /* ============================================
+       RESET & BASE
+    ============================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--muted);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+      overflow-x: hidden;
     }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; }
 
-    .container{max-width:var(--container);margin:0 auto;padding:0 20px}
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
 
-    /* NAVBAR (accessible, sticky with backdrop blur) */
-    header{position:-ms-page;top:0;z-index:1200}
-    .nav-inner{
-      display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:linear-gradient(90deg,var(--nav-start),var(--nav-end));color:#fff;backdrop-filter:blur(6px);box-shadow:0 6px 18px rgba(10,25,50,0.15);
+    /* ============================================
+       TYPOGRAPHY
+    ============================================ */
+    h1, h2, h3, h4 { font-family: var(--font-head); line-height: 1.1; margin: 0 0 0.5em; }
+    h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; }
+    h2 { font-size: clamp(1.6rem, 2.8vw, 2.6rem); font-weight: 700; color: var(--navy-deep); }
+    h3 { font-size: clamp(1.1rem, 1.8vw, 1.35rem); font-weight: 700; color: var(--navy-deep); }
+    p { margin: 0 0 1em; }
+    p:last-child { margin-bottom: 0; }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal);
+      background: rgba(42,180,180,0.1);
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 16px;
     }
-    .brand{display:flex;gap:12px;align-items:center}
-    .brand img{height:48px;width:auto;display:block}
-    .brand h4{font-family:'Montserrat';letter-spacing:0.2px;margin:0;font-size:1rem}
+    .section-label.on-dark {
+      color: var(--teal-soft);
+      background: rgba(42,180,180,0.2);
+    }
+    .lead-text {
+      font-size: clamp(1rem, 1.4vw, 1.12rem);
+      color: var(--muted);
+      max-width: 700px;
+      line-height: 1.75;
+    }
+    .lead-text.centered { margin: 0 auto; text-align: center; }
 
-    /* Desktop nav */
-    nav ul{list-style:none;display:flex;gap:px;margin:0;padding:0;align-items:normal}
-    nav a{color:#eaf4ff;text-decoration:none;padding:10px 14px;border-radius:12px;font-weight:600; transition: background-color 0.2s ease;}
-    nav a[aria-current='page'],nav a:hover{background:rgba(255,255,255,0.08)}
+    /* ============================================
+       BUTTONS
+    ============================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 999px;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+      border: 0;
+      cursor: pointer;
+      transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), background 0.2s var(--ease);
+      white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(224,92,40,0.35);
+    }
+    .btn-primary:hover {
+      background: #c94e20;
+      box-shadow: 0 12px 32px rgba(224,92,40,0.45);
+    }
+    .btn-outline-white {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.55);
+    }
+    .btn-outline-white:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.85);
+    }
+    .btn-navy {
+      background: var(--navy-deep);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(11,42,69,0.25);
+    }
+    .btn-navy:hover { background: var(--navy-mid); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--navy-deep);
+      border: 1.5px solid var(--border);
+    }
+    .btn-ghost:hover { background: var(--bg); border-color: var(--ocean-blue); color: var(--ocean-blue); }
+
+    /* Floating CTA */
+    .btn-floating {
+      position: fixed;
+      right: 24px;
+      bottom: 28px;
+      z-index: 1200;
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 8px 28px rgba(224,92,40,0.45);
+      padding: 13px 22px;
+    }
+    .btn-floating:hover { background: #c94e20; }
+
+    /* ============================================
+       HEADER / NAV
+    ============================================ */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-mid) 100%);
+      box-shadow: 0 4px 24px rgba(11,42,69,0.2);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      gap: 16px;
+    }
+    .brand a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .brand img { height: 46px; width: auto; }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2px;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+    nav a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      padding: 9px 16px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.01em;
+      transition: background 0.2s var(--ease), color 0.2s var(--ease);
+    }
+    nav a:hover, nav a[aria-current="page"] {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+    nav .nav-cta {
+      background: var(--accent);
+      color: #fff;
+      padding: 9px 20px;
+      box-shadow: 0 4px 14px rgba(224,92,40,0.35);
+    }
+    nav .nav-cta:hover { background: #c94e20; }
 
     /* Mobile menu */
-    .menu-toggle{display:none;background:transparent;border:0;color:#fff;font-size:1.4rem; cursor: pointer;}
-    #site-menu.mobile-nav {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: linear-gradient(90deg, var(--nav-start), var(--nav-end));
-        padding: 10px 0;
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 8px 12px;
+      transition: background 0.2s;
     }
-    #site-menu.mobile-nav li { width: 100%; text-align: center; }
-    #site-menu.mobile-nav a { display: block; padding: 12px 20px; }
+    .menu-toggle:hover { background: rgba(255,255,255,0.1); }
 
-
-    /* CTA floating */
-    /*.fab{position:fixed;right:20px;bottom:22px;background:var(--accent);color:white;border-radius:999px;padding:12px 18px;font-weight:700;box-shadow:0 10px 30px rgba(43,108,176,0.25);z-index:1200; text-decoration: none;}*/
-    /*.fab{position:fixed;right:20px;bottom:22px;background:var(--accent);color:white;border-radius:999px;padding:12px 18px;font-weight:700; text-decoration: none;}*/
-    .btn.third{position:fixed;right:20px;bottom:22px;background:var(--accent);color:#fff;border:0;padding:12px 20px;border-radius:999px;font-weight:700;cursor:pointer;text-decoration:none; display: inline-flex; gap: 8px; transition: background-color 0.2s ease;}
-
-
-    /* HERO */
-    .hero{min-height:80vh;display:grid;place-items:center;text-align:center;padding:80px 20px;background:linear-gradient(180deg, rgba(6,20,35,0.6), rgba(6,20,35,0.6)), url('assets/New background.jpg') center/cover no-repeat;color:#fff}
-    .hero .inner{max-width:1000px}
-    h1{font-family:'Montserrat';font-size:clamp(2rem,4.5vw,3.6rem);line-height:1.02;margin-bottom:12px}
-    .hero .lead{font-size:clamp(1rem,1.4vw,1.2rem);opacity:0.95;margin-bottom:20px}
-    .hero .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-
-    .btn{background:var(--accent);color:#fff;border:0;padding:12px 20px;border-radius:999px;font-weight:700;cursor:pointer;text-decoration:none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; transition: background-color 0.2s ease;}
-    .btn:hover { background: var(--nav-start); }
-    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.18)}
-
-    /* Sections */
-    section{padding:5px 0}
-    section .container{display:block}
-    h2{font-family:'Montserrat';color:#0f2a46;margin-bottom:18px;font-size:clamp(1.4rem,2.4vw,2.6rem)}
-    p.lead-muted{max-width:900px;margin:0 auto;color:var(--muted);font-size:1.05rem}
-
-    /* ABOUT - modern card grid with revealable modal bios */
-    .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-top:28px}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,250,250,0.9));border-radius:var(--radius);overflow:hidden;box-shadow:0 6px 30px rgba(17,42,70,0.07);display:flex;flex-direction:column}
-    .card .media{height:380px;overflow:hidden}
-    .card img{width: 100%;height: 100%;object-fit:cover;display:block}
-    .card .body{padding:18px;flex:1;display:flex;flex-direction:column;gap:12px}
-    .role{font-size:0.92rem;color:var(--accent);font-weight:700}
-    .name{font-weight:700;font-size:1.05rem;color:#112a46}
-    .excerpt{color:var(--muted);font-size:0.95rem}
-    .card .actions{display:flex;gap:8px;margin-top:auto;align-items:center}
-    .icon-btn{background:transparent;border:1px solid rgba(17,42,70,0.06);padding:8px 12px;border-radius:10px;cursor:pointer}
-
-    /* Modal (accessible) */
-    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;padding:20px;z-index:1600; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);}
-    .modal[open]{display:flex}
-    .modal .panel{max-width:900px;background:var(--card);border-radius:12px;padding:20px;box-shadow:0 30px 80px rgba(2,18,50,0.35);overflow:auto;max-height:85vh}
-    .modal .panel header{display:flex;justify-content:space-between;align-items:center;gap:12px}
-    .modal .panel header h3{margin:0}
-
-    /* Impact cards */
-    .impact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:22px}
-    .impact-card{background:linear-gradient(180deg,var(--card),#fbfdff);border-radius:12px;padding:20px;box-shadow:0 8px 30px rgba(2,18,50,0.04);text-align:center}
-    .impact-card i{font-size:2.4rem;color:var(--accent);margin-bottom:10px}
-
-    /* Services gallery */
-    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
-
-    /* Contact form styles */
-    #contact-form{
-        max-width:760px;
-        margin:28px auto 0 auto;
-        background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(250,250,250,0.85));
-        padding:28px;
-        border-radius:12px;
-        box-shadow:0 8px 30px rgba(2,18,50,0.05);
-        display: grid;
-        gap: 16px;
+    .mobile-menu-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 990;
+      background: rgba(11,42,69,0.97);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 40px 24px;
     }
-    #contact-form label{display:block;font-size:0.9rem;font-weight: 600; color:var(--muted);margin-bottom:6px}
-    #contact-form input, #contact-form textarea{
-        width:100%;
-        padding:12px;
-        border-radius:10px;
-        border:1px solid #e1e8ef;
-        background:#fff;
-        font-size:1rem;
-        font-family: 'Poppins', sans-serif;
-        transition: border-color 0.2s, box-shadow 0.2s;
+    .mobile-menu-overlay.is-open { display: flex; }
+    .mobile-menu-overlay a {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.4rem;
+      font-weight: 700;
+      font-family: var(--font-head);
+      text-decoration: none;
+      padding: 14px 32px;
+      border-radius: var(--radius);
+      width: 100%;
+      text-align: center;
+      max-width: 320px;
+      transition: background 0.2s;
     }
-    #contact-form input:focus, #contact-form textarea:focus {
-        outline: none;
-        border-color: var(--accent);
-        box-shadow: 0 0 0 3px rgba(43, 108, 176, 0.2);
+    .mobile-menu-overlay a:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    .mobile-menu-overlay .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: transparent;
+      border: 0;
+      color: #fff;
+      font-size: 1.6rem;
+      cursor: pointer;
     }
-    #contact-form textarea{min-height:140px; resize: vertical;}
 
-    #result-message {
-        text-align: center;
-        font-weight: 600;
-        margin-top: 10px;
+    @media (max-width: 860px) {
+      nav ul { display: none; }
+      .menu-toggle { display: inline-flex; }
     }
+
+    /* ============================================
+       HERO
+    ============================================ */
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 100px 24px 80px;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(11,42,69,0.72) 0%, rgba(11,42,69,0.58) 60%, rgba(11,42,69,0.82) 100%),
+        url('assets/New background.jpg') center/cover no-repeat;
+      color: #fff;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(42,180,180,0.12), transparent);
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 920px;
+    }
+    .hero h1 {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+      margin-bottom: 18px;
+    }
+    .hero h1 span { color: var(--teal-soft); }
+    .hero-sub {
+      font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+      opacity: 0.9;
+      max-width: 680px;
+      margin: 0 auto 14px;
+      line-height: 1.7;
+    }
+    .hero-tagline {
+      font-size: 0.88rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal-soft);
+      font-weight: 600;
+      margin-bottom: 32px;
+      opacity: 0.9;
+    }
+    .hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .hero-badges {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 56px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .hero-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.85);
+      font-weight: 500;
+    }
+    .hero-badge i { color: var(--teal-soft); font-size: 1.1rem; }
+
+    /* ============================================
+       WAVE DIVIDER
+    ============================================ */
+    .wave-divider { display: block; width: 100%; overflow: hidden; line-height: 0; }
+    .wave-divider svg { display: block; width: 100%; }
+
+    /* ============================================
+       SECTIONS
+    ============================================ */
+    section { padding: 96px 0; }
+    section.compact { padding: 64px 0; }
+    section.dark {
+      background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-mid) 100%);
+      color: rgba(255,255,255,0.88);
+    }
+    section.dark h2, section.dark h3 { color: #fff; }
+    section.alt { background: var(--surface-alt); }
+    .section-head { text-align: center; margin-bottom: 56px; }
+    .section-head h2 { margin-bottom: 16px; }
+    .divider {
+      width: 56px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--teal));
+      border-radius: 999px;
+      margin: 16px auto 24px;
+    }
+
+    /* ============================================
+       ABOUT / WHO WE ARE
+    ============================================ */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .about-visual {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .about-visual img { width: 100%; height: 480px; object-fit: cover; display: block; }
+    .about-visual-badge {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      background: rgba(11,42,69,0.92);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .about-visual-badge i { color: var(--teal-soft); font-size: 1.2rem; }
+    .about-content h2 { margin-bottom: 20px; }
+    .about-highlights {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .highlight-item {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .highlight-item:hover { border-color: var(--ocean-blue); box-shadow: var(--shadow-sm); }
+    .highlight-item i { color: var(--teal); font-size: 1.3rem; margin-bottom: 4px; }
+    .highlight-item strong { color: var(--navy-deep); font-size: 0.92rem; font-weight: 700; }
+    .highlight-item span { color: var(--muted); font-size: 0.85rem; line-height: 1.5; }
+
+    @media (max-width: 860px) {
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-visual img { height: 320px; }
+      .about-highlights { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================
+       TEAM SECTION
+    ============================================ */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+      margin-top: 48px;
+    }
+    .team-card {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1.5px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    }
+    .team-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+    .team-card-media {
+      height: 340px;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, var(--navy-mid), var(--navy-deep));
+    }
+    .team-card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.5s var(--ease);
+    }
+    .team-card:hover .team-card-media img { transform: scale(1.04); }
+    .team-card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: linear-gradient(to top, rgba(11,42,69,0.7), transparent);
+    }
+    .team-card-body {
+      padding: 22px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .team-role {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .team-name {
+      font-family: var(--font-head);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy-deep);
+    }
+    .team-excerpt {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .team-card-footer {
+      padding: 0 24px 22px;
+      display: flex;
+      gap: 10px;
+    }
+    .bio-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--bg);
+      color: var(--navy-mid);
+      border: 1.5px solid var(--border);
+      padding: 9px 18px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      font-family: var(--font-sans);
+    }
+    .bio-btn:hover {
+      background: var(--navy-deep);
+      color: #fff;
+      border-color: var(--navy-deep);
+    }
+    .bio-btn i { font-size: 0.8rem; }
+
+    /* ============================================
+       MODAL BIOS
+    ============================================ */
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 2000;
+      background: rgba(11,42,69,0.65);
+      backdrop-filter: blur(6px);
+    }
+    .modal[open] { display: flex; }
+    .modal-panel {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      padding: 0;
+      box-shadow: 0 40px 100px rgba(11,42,69,0.4);
+      max-width: 800px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .modal-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 28px 32px 24px;
+      border-bottom: 1.5px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--surface);
+      z-index: 1;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+    .modal-title-block { display: flex; flex-direction: column; gap: 4px; }
+    .modal-role { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); }
+    .modal-name { font-family: var(--font-head); font-size: 1.5rem; font-weight: 700; color: var(--navy-deep); }
+    .modal-close {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      color: var(--muted);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+      transition: background 0.2s, color 0.2s;
+    }
+    .modal-close:hover { background: var(--navy-deep); color: #fff; border-color: var(--navy-deep); }
+    .modal-body { padding: 28px 32px; }
+    .modal-body p { color: var(--muted); line-height: 1.8; font-size: 0.98rem; }
+    @media (max-width: 600px) {
+      .modal-header { padding: 20px; }
+      .modal-body { padding: 20px; }
+    }
+
+    /* ============================================
+       MISSION / WHY SECTION
+    ============================================ */
+    .mission-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .mission-left {
+      background: linear-gradient(160deg, var(--navy-deep), var(--navy-bright));
+      color: #fff;
+      padding: 56px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .mission-left h2 { color: #fff; margin-bottom: 18px; }
+    .mission-left p { color: rgba(255,255,255,0.82); line-height: 1.8; font-size: 1.02rem; }
+    .mission-right {
+      background: var(--surface);
+      padding: 56px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 32px;
+    }
+    .why-item { display: flex; gap: 18px; align-items: flex-start; }
+    .why-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .why-text h4 { color: var(--navy-deep); margin-bottom: 4px; font-size: 1rem; }
+    .why-text p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+
+    @media (max-width: 860px) {
+      .mission-layout { grid-template-columns: 1fr; }
+      .mission-left, .mission-right { padding: 40px 28px; }
+    }
+
+    /* ============================================
+       3 C's — CREW | CAPTAINS | COMPANY
+    ============================================ */
+    .three-c-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 16px;
+    }
+    .c-card {
+      background: rgba(255,255,255,0.07);
+      border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      transition: background 0.25s, border-color 0.25s, transform 0.25s var(--ease);
+    }
+    .c-card:hover {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(74,208,208,0.4);
+      transform: translateY(-4px);
+    }
+    .c-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--teal), var(--ocean-blue));
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+    }
+    .c-card h3 { color: #fff; font-size: 1.15rem; margin-bottom: 16px; }
+    .c-card ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+    .c-card ul li {
+      color: rgba(255,255,255,0.78);
+      font-size: 0.88rem;
+      padding-left: 20px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .c-card ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 7px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--teal-soft);
+    }
+
+    @media (max-width: 860px) {
+      .three-c-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================
+       SERVICES
+    ============================================ */
+    .services-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-bottom: 80px;
+    }
+    .services-layout.reverse { direction: rtl; }
+    .services-layout.reverse > * { direction: ltr; }
+    .service-visual {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .service-visual img { width: 100%; height: 380px; object-fit: cover; }
+    .service-content { display: flex; flex-direction: column; gap: 20px; }
+    .service-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(42,180,180,0.1);
+      color: var(--teal);
+      border: 1.5px solid rgba(42,180,180,0.25);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+    .service-content h3 { font-size: clamp(1.25rem, 2vw, 1.6rem); margin-bottom: 8px; }
+    .service-content p { color: var(--muted); line-height: 1.75; }
+    .kit-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 20px;
+      background: var(--surface-alt);
+      border-radius: var(--radius);
+      border: 1.5px solid var(--border);
+    }
+    .kit-list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .kit-list-item i { color: var(--teal); font-size: 0.85rem; margin-top: 3px; flex-shrink: 0; }
+    .kit-list-item strong { color: var(--navy-deep); }
+
+    @media (max-width: 860px) {
+      .services-layout { grid-template-columns: 1fr; gap: 32px; }
+      .services-layout.reverse { direction: ltr; }
+      .service-visual img { height: 260px; }
+    }
+
+    /* Services features grid */
+    .service-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 56px;
+    }
+    .feature-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+      transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s var(--ease);
+    }
+    .feature-card:hover {
+      border-color: var(--ocean-blue);
+      box-shadow: var(--shadow);
+      transform: translateY(-4px);
+    }
+    .feature-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(30,96,145,0.12), rgba(42,180,180,0.12));
+      color: var(--ocean-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin: 0 auto 16px;
+    }
+    .feature-card h4 { color: var(--navy-deep); font-size: 0.95rem; margin-bottom: 8px; }
+    .feature-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    /* ============================================
+       HOW IT WORKS
+    ============================================ */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0;
+      position: relative;
+    }
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: 12%;
+      right: 12%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--teal), var(--ocean-blue), var(--accent));
+      border-radius: 999px;
+      z-index: 0;
+    }
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .step-num {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--navy-deep), var(--navy-bright));
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-head);
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 24px;
+      border: 4px solid var(--bg);
+      box-shadow: var(--shadow);
+      flex-shrink: 0;
+      transition: transform 0.25s var(--ease);
+    }
+    .step:hover .step-num { transform: scale(1.08); }
+    .step-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--teal), var(--ocean-blue));
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      margin: 0 auto 14px;
+    }
+    .step h4 { color: var(--navy-deep); font-size: 1rem; margin-bottom: 8px; }
+    .step p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; max-width: 200px; margin: 0 auto; }
+
+    @media (max-width: 860px) {
+      .steps-grid { grid-template-columns: 1fr; gap: 32px; }
+      .steps-grid::before { display: none; }
+      .step { flex-direction: row; text-align: left; align-items: flex-start; gap: 20px; }
+      .step-num { width: 52px; height: 52px; font-size: 1.1rem; margin-bottom: 0; flex-shrink: 0; }
+      .step > div { flex: 1; }
+      .step p { max-width: none; }
+    }
+
+    /* ============================================
+       IMPACT / STATS
+    ============================================ */
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+    .impact-card {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      border: 1.5px solid var(--border);
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+    }
+    .impact-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+    .impact-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: var(--radius);
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+    }
+    .impact-icon.teal { background: linear-gradient(135deg, rgba(42,180,180,0.15), rgba(30,96,145,0.15)); color: var(--teal); }
+    .impact-icon.orange { background: linear-gradient(135deg, rgba(224,92,40,0.12), rgba(244,120,74,0.12)); color: var(--accent); }
+    .impact-icon.navy { background: linear-gradient(135deg, rgba(11,42,69,0.1), rgba(30,96,145,0.1)); color: var(--ocean-blue); }
+    .impact-card h3 { font-size: 1.05rem; color: var(--navy-deep); margin-bottom: 10px; }
+    .impact-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+
+    /* ============================================
+       CONTACT
+    ============================================ */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .contact-info { display: flex; flex-direction: column; gap: 28px; }
+    .contact-info h2 { margin-bottom: 8px; }
+    .contact-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .contact-detail-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--teal), var(--ocean-blue));
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .contact-detail h4 { color: var(--navy-deep); font-size: 0.9rem; margin-bottom: 2px; }
+    .contact-detail a, .contact-detail span { color: var(--muted); font-size: 0.88rem; text-decoration: none; }
+    .contact-detail a:hover { color: var(--ocean-blue); }
+
+    #contact-form {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      box-shadow: var(--shadow);
+      border: 1.5px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    #contact-form label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--navy-deep);
+      margin-bottom: 6px;
+    }
+    #contact-form input,
+    #contact-form textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border);
+      background: var(--surface-alt);
+      font-size: 0.95rem;
+      font-family: var(--font-sans);
+      color: var(--navy-deep);
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+    #contact-form input:focus,
+    #contact-form textarea:focus {
+      outline: none;
+      border-color: var(--ocean-blue);
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(43,108,176,0.12);
+    }
+    #contact-form textarea { min-height: 130px; resize: vertical; }
+    #result-message { text-align: center; font-weight: 600; font-size: 0.92rem; }
     .spinner {
-        border: 2px solid rgba(255, 255, 255, 0.3);
-        width: 16px;
-        height: 16px;
-        border-radius: 50%;
-        border-left-color: #fff;
-        animation: spin 1s ease infinite;
+      border: 2px solid rgba(255,255,255,0.3);
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border-left-color: #fff;
+      animation: spin 0.8s linear infinite;
+      flex-shrink: 0;
     }
-    @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
 
-
-    footer{padding:36px 0;text-align:center;background:linear-gradient(90deg,var(--nav-start),var(--nav-end));color:#fff;margin-top:40px}
-
-    /* Responsive tweaks */
-    @media (max-width:900px){
-        nav ul{display:none} /* Hide desktop nav */
-        .menu-toggle{display:inline-flex}
+    @media (max-width: 860px) {
+      .contact-layout { grid-template-columns: 1fr; gap: 40px; }
+      .form-row { grid-template-columns: 1fr; }
+      #contact-form { padding: 24px; }
     }
 
-    /* reduced motion preference */
-    @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+    /* ============================================
+       FOOTER
+    ============================================ */
+    footer {
+      background: linear-gradient(135deg, var(--navy-deep) 0%, #071c2e 100%);
+      color: rgba(255,255,255,0.7);
+      padding: 56px 0 36px;
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-brand img { height: 44px; margin-bottom: 16px; }
+    .footer-brand p { font-size: 0.88rem; line-height: 1.7; max-width: 280px; }
+    .footer-tagline { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal-soft); font-weight: 600; margin-top: 12px; }
+    .footer-col h5 { color: #fff; font-family: var(--font-head); font-size: 0.88rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--teal-soft); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.82rem;
+    }
+    .footer-bottom a { color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+    .footer-bottom a:hover { color: var(--teal-soft); }
+    @media (max-width: 860px) {
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { justify-content: center; text-align: center; }
+    }
+
+    /* ============================================
+       SCROLL ANIMATIONS
+    ============================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ============================================
+       REDUCED MOTION
+    ============================================ */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+    }
+
+    /* ============================================
+       UTILITY
+    ============================================ */
+    .text-center { text-align: center; }
+    .text-accent { color: var(--accent); }
+    .text-teal { color: var(--teal); }
+    .mt-8 { margin-top: 8px; }
+    .mt-16 { margin-top: 16px; }
+    .mt-24 { margin-top: 24px; }
+    .mt-32 { margin-top: 32px; }
+    .mb-0 { margin-bottom: 0; }
   </style>
 </head>
 <body>
-  <header>
+
+  <!-- ============================================
+       FLOATING CTA
+  ============================================ -->
+  <a class="btn btn-floating" href="#contact" aria-label="Get in touch with Ocean Doctor">
+    <i class="fas fa-envelope" aria-hidden="true"></i> Get in Touch
+  </a>
+
+  <!-- ============================================
+       HEADER
+  ============================================ -->
+  <header role="banner">
     <div class="nav-inner container">
       <div class="brand">
-        <a href="#home" aria-label="Go to homepage">
-            <img src="assets/Ocean Doc vector logo and words WHITE-cropped.png" alt="Ocean Doctor logo" width="140" height="48">
+        <a href="#home" aria-label="Ocean Doctor — Go to homepage">
+          <img src="assets/Ocean Doc vector logo and words WHITE-cropped.png" alt="Ocean Doctor Maritime Healthcare Solutions logo" width="150" height="46">
         </a>
       </div>
 
       <nav aria-label="Primary navigation">
-        <button class="menu-toggle" aria-expanded="false" aria-controls="site-menu">
-            <i class="fas fa-bars" aria-hidden="true"></i>
-            <span class="sr-only">Menu</span>
-        </button>
-        <ul id="site-menu">
-          <li><a href="#home" aria-current="page">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#impact">Impact</a></li>
-          <li><a href="#contact">Contact</a></li>
+        <ul id="site-menu" role="list">
+          <li role="listitem"><a href="#home" aria-current="page">Home</a></li>
+          <li role="listitem"><a href="#about">About</a></li>
+          <li role="listitem"><a href="#team">Team</a></li>
+          <li role="listitem"><a href="#services">Services</a></li>
+          <li role="listitem"><a href="#how-it-works">How It Works</a></li>
+          <li role="listitem"><a href="#impact">Impact</a></li>
+          <li role="listitem"><a href="#contact" class="nav-cta">Contact Us</a></li>
         </ul>
       </nav>
+
+      <button class="menu-toggle" id="menu-toggle-btn" aria-expanded="false" aria-controls="mobile-overlay" aria-label="Open navigation menu">
+        <i class="fas fa-bars" aria-hidden="true"></i>
+      </button>
     </div>
   </header>
 
-  <a class="btn third" href="#contact">Get in Touch</a>
+  <!-- Mobile overlay nav -->
+  <div id="mobile-overlay" class="mobile-menu-overlay" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <button class="close-btn" id="mobile-close-btn" aria-label="Close navigation menu">
+      <i class="fas fa-times" aria-hidden="true"></i>
+    </button>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#team">Team</a>
+    <a href="#services">Services</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#impact">Impact</a>
+    <a href="#contact">Contact Us</a>
+  </div>
 
   <main>
-    <section id="home" class="hero" role="region" aria-label="Hero">
-      <div class="inner container">
-        <h1>Your Doctor on Deck.</h1>
-        <h2 style="color: white;">Immediate 24/7 Healthcare access for all manner of Maritime Crews.</h2>
-        <p class="lead">Reduce Medical logistics, maintain operations and care for your crew with our SAHPRA-approved telemedicine kits and 24/7 access to our team of qualified Medical Doctors.</p>
-        <div class="actions">
-          <a class="btn" href="#services">Explore Services</a>
-          <!-- <a class="btn secondary" href="#about">About Us</a> -->
+
+    <!-- ============================================
+         HERO
+    ============================================ -->
+    <section id="home" class="hero" role="region" aria-label="Hero — Ocean Doctor Maritime Telemedicine">
+      <div class="hero-inner container">
+        <div class="section-label on-dark">Southern Africa's First Maritime Telemedicine Provider</div>
+        <h1>Your Doctor on <span>Deck.</span></h1>
+        <p class="hero-sub">24/7 access to qualified medical doctors for fishing and maritime crews — anytime, anywhere at sea. SAHPRA-approved. Plug &amp; play. All you need is WiFi.</p>
+        <p class="hero-tagline">Healthy Crew. Healthy Catch.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#services">
+            <i class="fas fa-briefcase-medical" aria-hidden="true"></i> Explore Services
+          </a>
+          <a class="btn btn-outline-white" href="#about">
+            <i class="fas fa-info-circle" aria-hidden="true"></i> Who We Are
+          </a>
+        </div>
+        <div class="hero-badges" role="list">
+          <div class="hero-badge" role="listitem">
+            <i class="fas fa-clock" aria-hidden="true"></i>
+            <span>24/7 Doctor Access</span>
+          </div>
+          <div class="hero-badge" role="listitem">
+            <i class="fas fa-shield-alt" aria-hidden="true"></i>
+            <span>SAHPRA-Approved Technology</span>
+          </div>
+          <div class="hero-badge" role="listitem">
+            <i class="fas fa-wifi" aria-hidden="true"></i>
+            <span>Plug &amp; Play — WiFi Only</span>
+          </div>
+          <div class="hero-badge" role="listitem">
+            <i class="fas fa-anchor" aria-hidden="true"></i>
+            <span>Built for Maritime &amp; Fishing</span>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- Wave -->
+    <div class="wave-divider" aria-hidden="true">
+      <svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:64px">
+        <path d="M0,32 C240,64 480,0 720,32 C960,64 1200,0 1440,32 L1440,64 L0,64 Z" fill="var(--bg)"/>
+      </svg>
+    </div>
+
+    <!-- ============================================
+         ABOUT
+    ============================================ -->
     <section id="about" aria-labelledby="about-title">
       <div class="container">
-        <h2 style="text-align: center;"id="about-title">About Ocean Doctor</h2>
-        <p class="lead-muted" style="text-align: center;">Ocean Doctor (PTY) Ltd is the first Telemedicine provider tailored for the fishing and maritime industry in Southern Africa. Our SAHPRA-approved technology ensures 24/7 access to qualified doctors, delivering seamless healthcare to crews at sea, enhancing safety and operational efficiency.</p>
-        
-        <!-- Team grid -->
-         <!-- 
+        <div class="about-grid">
+          <div class="about-visual reveal">
+            <img src="assets/New background.jpg" alt="Fishing vessel at sea — Ocean Doctor serves maritime crews" loading="lazy" decoding="async">
+            <div class="about-visual-badge">
+              <i class="fas fa-certificate" aria-hidden="true"></i>
+              <div>
+                <div style="font-size:0.75rem;opacity:0.75;letter-spacing:0.06em;text-transform:uppercase">SAHPRA-Approved</div>
+                <div>Health Tech Provider</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-content reveal reveal-delay-1">
+            <div class="section-label">Who We Are</div>
+            <h2 id="about-title">Southern Africa's First Dedicated Maritime Telemedicine Provider</h2>
+            <div class="divider" style="margin:0 0 20px"></div>
+            <p class="lead-text">Ocean Doctor (PTY) Ltd is a pioneering healthcare solution built specifically for the fishing and maritime industry. We provide 24/7 access to our own team of qualified Medical Doctors through our SAHPRA-approved health tech — the DOD Kit — ensuring every vessel and crew can access quality medical care anytime, anywhere.</p>
+
+            <div class="about-highlights">
+              <div class="highlight-item">
+                <i class="fas fa-user-md" aria-hidden="true"></i>
+                <strong>Qualified Medical Doctors</strong>
+                <span>Our own in-house team — available around the clock</span>
+              </div>
+              <div class="highlight-item">
+                <i class="fas fa-broadcast-tower" aria-hidden="true"></i>
+                <strong>Offshore Capability</strong>
+                <span>Designed for remote maritime environments</span>
+              </div>
+              <div class="highlight-item">
+                <i class="fas fa-fish" aria-hidden="true"></i>
+                <strong>Industry-Specific</strong>
+                <span>Built exclusively for fishing and maritime operations</span>
+              </div>
+              <div class="highlight-item">
+                <i class="fas fa-balance-scale" aria-hidden="true"></i>
+                <strong>ESG &amp; Compliance</strong>
+                <span>Supports worker rights &amp; ensures alignment with international ESG sustainability standards</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         MISSION & WHY
+    ============================================ -->
+    <section class="alt" aria-labelledby="mission-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-label">Our Purpose</div>
+          <h2 id="mission-title">Mission &amp; Why It Matters</h2>
+          <div class="divider"></div>
+        </div>
+        <div class="mission-layout reveal">
+          <div class="mission-left">
+            <div class="section-label on-dark">Our Mission</div>
+            <h2>Caring for Your Crew, Caring for Your Company</h2>
+            <p>To deliver quality medical access and medical care to vessels in remote offshore environments — giving vessel owners, crew and their families peace of mind when out at sea.</p>
+            <p style="margin-top:16px">A healthy crew means optimised productivity at sea. Less downtime, less costly diversions due to healthcare issues, and more fish caught.</p>
+          </div>
+          <div class="mission-right">
+            <div class="why-item">
+              <div class="why-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
+              <div class="why-text">
+                <h4>Optimised Productivity</h4>
+                <p>Healthy crew means fewer interruptions, less unplanned downtime, and more fish caught per voyage.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon"><i class="fas fa-wallet" aria-hidden="true"></i></div>
+              <div class="why-text">
+                <h4>Reduced Costly Diversions</h4>
+                <p>Early intervention prevents expensive returns to shore — saving fuel, time, and catch value for operators.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon"><i class="fas fa-hands-helping" aria-hidden="true"></i></div>
+              <div class="why-text">
+                <h4>Worker Rights &amp; ESG</h4>
+                <p>Supports workers’ right to quality healthcare while strengthening Social and Governance standards. Early medical intervention prevents unnecessary vessel diversions, reducing fuel use and emissions, and improving Environmental impact and overall ESG compliance.</p>
+              </div>
+            </div>
+            <div class="why-item">
+              <div class="why-icon"><i class="fas fa-receipt" aria-hidden="true"></i></div>
+              <div class="why-text">
+                <h4>Fully Tax Deductible</h4>
+                <p>Ocean Doctor is fully tax deductible as an employee cost — a smart business and healthcare investment.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         TEAM
+    ============================================ -->
+    <section id="team" aria-labelledby="team-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-label">The People Behind Ocean Doctor</div>
+          <h2 id="team-title">Meet Our Team</h2>
+          <div class="divider"></div>
+          <p class="lead-text centered">A multidisciplinary team uniting medical expertise, technology leadership, and legal governance — dedicated to transforming maritime healthcare.</p>
+        </div>
+
         <div class="team-grid" role="list">
-            <article class="card" role="listitem">
-              <div class="media">
-                  <img src="assets/Sage.jpeg" alt="Dr Sage Gerdharee smiling" loading="lazy" decoding="async">
-              </div>
-              <div class="body">
-                <div class="role">Medical Director</div>
-                <div class="name">Dr Sage Gerdharee</div>
-                <div class="excerpt">Cum laude medical graduate with emergency transfer and rural service experience. Passionate about healthcare processes and telemedicine.</div>
-                <div class="actions">
-                  <button class="icon-btn" data-bio="#bio-sage" aria-controls="bio-sage" aria-expanded="false">Read bio</button>
-                </div>
-              </div>
-            </article>
 
-            <article class="card" role="listitem">
-                <div class="media">
-                    <img src="assets/Bheki.jpeg" alt="Bhekumuzi Sodinga" loading="lazy" decoding="async">
-                </div>
-                <div class="body">
-                  <div class="role">Project Manager</div>
-                  <div class="name">Bhekumuzi Sodinga</div>
-                  <div class="excerpt">Project manager — combines Tech experience and Biotechnology background to deliver dependable field solutions.</div>
-                  <div class="actions">
-                    <button class="icon-btn" data-bio="#bio-bheki" aria-controls="bio-bheki" aria-expanded="false">Read bio</button>
-                  </div>
-                </div>
-            </article>
+          <!-- Dr Sage -->
+          <article class="card team-card reveal" role="listitem">
+            <div class="team-card-media">
+              <img src="assets/Sage.jpeg" alt="Dr Sage Gerdharee, Medical Director of Ocean Doctor" loading="lazy" decoding="async">
+              <div class="team-card-overlay" aria-hidden="true"></div>
+            </div>
+            <div class="team-card-body">
+              <div class="team-role">Chief Executive Officer</div>
+              <div class="team-name">Dr Sage Gerdharee</div>
+              <div class="team-excerpt">Cum laude medical graduate with emergency transfer and rural service experience. Passionate about healthcare processes, telemedicine, and maritime wellness.</div>
+            </div>
+            <div class="team-card-footer">
+              <button class="bio-btn" data-bio="#bio-sage" aria-controls="bio-sage" aria-expanded="false" aria-haspopup="dialog">
+                <i class="fas fa-user" aria-hidden="true"></i> Read Bio
+              </button>
+            </div>
+          </article>
 
-            <article class="card" role="listitem">
-                <div class="media">
-                    <img src="assets/Loyd.jpeg" alt="Loyiso Phantshwa" loading="lazy" decoding="async">
-                </div>
-                <div class="body">
-                  <div class="role">Director</div>
-                  <div class="name">Loyiso Phantshwa</div>
-                  <div class="excerpt">Legal-trained director and Chair of Fish SA — provides governance and industry networks to scale Ocean Doctor.</div>
-                  <div class="actions">
-                    <button class="icon-btn" data-bio="#bio-loyiso" aria-controls="bio-loyiso" aria-expanded="false">Read bio</button>
-                  </div>
-                </div>
-            </article>
-        </div>
-        -->
-        <!-- Hidden modal bios -->
-         <!--
-        <div id="bio-sage" class="modal" aria-hidden="true">
-          <div class="panel" role="dialog" aria-modal="true" aria-labelledby="sage-title">
-            <header>
-              <h3 id="sage-title">Dr Sage Gerdharee — Medical Director</h3>
-              <button class="icon-btn" data-close aria-label="Close">Close <i class="fas fa-times"></i></button>
-            </header>
-            <div>
-              <p>After graduating Cum Laude from Stellenbosch University Medical School, Dr Sage Gerdharee completed his Medical Internship at Cape Town's Groote Schuur Hospital complex and Community Service in deep rural Transkei. As an Independent Medical Practitioner, he spent much of his time working in cross-country emergency air transfer services, as well as in the private healthcare sector in and around the Cape. Throughout his medical career he’s worked as a freelance digital marketer for South African e-commerce companies and start-ups, growing ideas, businesses and solving problems. With a love for people and technology, building and optimizing healthcare processes has become a niche passion for him.</p>
+          <!-- Bheki -->
+          <article class="card team-card reveal reveal-delay-1" role="listitem">
+            <div class="team-card-media">
+              <img src="assets/Bheki.jpeg" alt="Bhekumuzi Sodinga, Project Manager at Ocean Doctor" loading="lazy" decoding="async">
+              <div class="team-card-overlay" aria-hidden="true"></div>
             </div>
-          </div>
-        </div>
-        <div id="bio-bheki" class="modal" aria-hidden="true">
-          <div class="panel" role="dialog" aria-modal="true" aria-labelledby="bheki-title">
-            <header>
-              <h3 id="bheki-title">Bhekumuzi Sodinga — Project Manager</h3>
-              <button class="icon-btn" data-close aria-label="Close">Close <i class="fas fa-times"></i></button>
-            </header>
-            <div>
-              <p>Bhekumuzi brings a strong background in technology, data, and project coordination to Ocean Doctor. With experience in cloud engineering, data analytics, and software development, he combines technical expertise with organizational skills to ensure projects run smoothly and deliver impact. As Project Manager, he oversees planning, execution, and team collaboration, making sure every initiative aligns with Ocean Doctor’s mission to provide reliable telemedicine solutions for the South African fishing industry.</p>
+            <div class="team-card-body">
+              <div class="team-role">Project Manager</div>
+              <div class="team-name">Bhekumuzi Sodinga</div>
+              <div class="team-excerpt">Combines tech experience and a Biotechnology background to deliver dependable, scalable field solutions in complex maritime environments.</div>
             </div>
-          </div>
-        </div>
-        <div id="bio-loyiso" class="modal" aria-hidden="true">
-          <div class="panel" role="dialog" aria-modal="true" aria-labelledby="loyiso-title">
-            <header>
-              <h3 id="loyiso-title">Loyiso Phantshwa — Director</h3>
-              <button class="icon-btn" data-close aria-label="Close">Close <i class="fas fa-times"></i></button>
-            </header>
-            <div>
-              <p>Loyiso studied Law at Rhodes University in the Eastern Cape before beginning his career at a law firm in Cape Town. With a strong foundation in legal and corporate governance, he has since expanded his leadership into the fishing industry. He currently serves as Chairman of Fish SA and as a Director at Ocean Doctor, where he brings strategic vision and industry expertise to support the company’s growth and impact.</p>
+            <div class="team-card-footer">
+              <button class="bio-btn" data-bio="#bio-bheki" aria-controls="bio-bheki" aria-expanded="false" aria-haspopup="dialog">
+                <i class="fas fa-user" aria-hidden="true"></i> Read Bio
+              </button>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    -->
+          </article>
 
-    <section id="services" aria-labelledby="services-title">
-      <div class="container">
-        <h2 style="text-align: center;"id="services-title">Our Services</h2>
-        <p class="lead-muted" style="text-align: center;">Through innovative, SAHPRA-approved Telemedicine devices, we provide comprehensive medical access and care to vessels in offshore environments, ensuring crew health and operational success. We supply the Doc on Deck (DOD) kit a rugged telemedicine hardware and an encrypted web app for live consultations, vitals capture and patient benching.</p>
+          <!-- Loyiso -->
+          <article class="card team-card reveal reveal-delay-2" role="listitem">
+            <div class="team-card-media">
+              <img src="assets/Loyd.jpeg" alt="Loyiso Phantshwa, Director at Ocean Doctor" loading="lazy" decoding="async">
+              <div class="team-card-overlay" aria-hidden="true"></div>
+            </div>
+            <div class="team-card-body">
+              <div class="team-role">Director</div>
+              <div class="team-name">Loyiso Phantshwa</div>
+              <div class="team-excerpt">Legal-trained director and Chair of Fish SA — provides governance, strategic vision, and deep industry networks to scale Ocean Doctor.</div>
+            </div>
+            <div class="team-card-footer">
+              <button class="bio-btn" data-bio="#bio-loyiso" aria-controls="bio-loyiso" aria-expanded="false" aria-haspopup="dialog">
+                <i class="fas fa-user" aria-hidden="true"></i> Read Bio
+              </button>
+            </div>
+          </article>
 
-        <div class="services-grid" style="margin-top:18px">
-          <div class="card">
-            <div class="media" style="height:200px"><img src="assets/Ocean Doc closed case.png" alt="Doc on Deck kit" loading="lazy"></div>
-            <div class="body">
-              <div class="name">Doc on Deck Kit</div>
-              <div class="excerpt">SAHPRA-approved Telemedicine hardware kit built for maritime use. It contains Digital Stethoscope, Otoscope, Dermascope, Vitals monitor and Tablet with Telemedicine Software.</div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="media" style="height:200px"><img src="assets/Ocean Doc DOD kit (1).png" alt="DOD equipment" loading="lazy"></div>
-            <div class="body">
-              <div class="name">DOD Kit with Equipment</div>
-              <div class="excerpt">Includes vitals + ECG, Glucometer and peripherals for reliable remote diagnosis and follow-up.</div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="media" style="height:200px"><img src="assets/software.JPG" alt="Software" loading="lazy"></div>
-            <div class="body">
-              <div class="name">Encrypted Web-App</div>
-              <div class="excerpt">24/7 consultations (phone/whatsapp/video), secure patient records, delayed consult uploads and crew benching.</div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
 
-    <section id="impact" aria-labelledby="impact-title">
+    <!-- Team Modals -->
+    <div id="bio-sage" class="modal" aria-hidden="true" role="dialog">
+      <div class="modal-panel" aria-modal="true" aria-labelledby="sage-modal-name">
+        <div class="modal-header">
+          <div class="modal-title-block">
+            <div class="modal-role">Chief Executive Officetr</div>
+            <div class="modal-name" id="sage-modal-name">Dr Sage Gerdharee</div>
+          </div>
+          <button class="modal-close" data-close aria-label="Close bio panel">
+            <i class="fas fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>After graduating Cum Laude from Stellenbosch University Medical School, Dr Sage Gerdharee completed his Medical Internship at Cape Town's Groote Schuur Hospital complex and Community Service in deep rural Transkei. As an Independent Medical Practitioner, he spent much of his time working in cross-country emergency air transfer services, as well as in the private healthcare sector in and around the Cape.</p>
+          <p>Throughout his medical career he has worked as a freelance digital marketer for South African e-commerce companies and start-ups, growing ideas, businesses and solving problems. With a love for people and technology, building and optimizing healthcare processes has become a niche passion for him — ultimately leading to the founding of Ocean Doctor.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="bio-bheki" class="modal" aria-hidden="true" role="dialog">
+      <div class="modal-panel" aria-modal="true" aria-labelledby="bheki-modal-name">
+        <div class="modal-header">
+          <div class="modal-title-block">
+            <div class="modal-role">Project Manager</div>
+            <div class="modal-name" id="bheki-modal-name">Bhekumuzi Sodinga</div>
+          </div>
+          <button class="modal-close" data-close aria-label="Close bio panel">
+            <i class="fas fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Bhekumuzi brings a strong background in technology, data, and project coordination to Ocean Doctor. With experience in cloud engineering, data analytics, and software development, he combines technical expertise with organizational skills to ensure projects run smoothly and deliver impact.</p>
+          <p>As Project Manager, he oversees planning, execution, and team collaboration, making sure every initiative aligns with Ocean Doctor's mission to provide reliable telemedicine solutions for the South African fishing and maritime industry. His biotechnology foundation uniquely positions him at the intersection of science and scalable field delivery.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="bio-loyiso" class="modal" aria-hidden="true" role="dialog">
+      <div class="modal-panel" aria-modal="true" aria-labelledby="loyiso-modal-name">
+        <div class="modal-header">
+          <div class="modal-title-block">
+            <div class="modal-role">Director</div>
+            <div class="modal-name" id="loyiso-modal-name">Loyiso Phantshwa</div>
+          </div>
+          <button class="modal-close" data-close aria-label="Close bio panel">
+            <i class="fas fa-times" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Loyiso studied Law at Rhodes University in the Eastern Cape before beginning his career at a law firm in Cape Town. With a strong foundation in legal and corporate governance, he has since expanded his leadership into the fishing industry.</p>
+          <p>He currently serves as Chairman of Fish SA and as a Director at Ocean Doctor, where he brings strategic vision and deep industry expertise to support the company's growth and societal impact. His network across the fishing sector has been instrumental in establishing Ocean Doctor's presence as Southern Africa's leading maritime healthcare solution.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================
+         SERVICES / DOD KIT
+    ============================================ -->
+    <section id="services" class="alt" aria-labelledby="services-title">
       <div class="container">
-        <h2 style="text-align: center;" id="impact-title">Our Impact</h2>
+        <div class="section-head reveal">
+          <div class="section-label">Our Healthcare Solution</div>
+          <h2 id="services-title">The DOD Kit &amp; Services</h2>
+          <div class="divider"></div>
+          <p class="lead-text centered">Through innovative, SAHPRA-approved telemedicine technology, we provide comprehensive medical access to vessels in offshore environments — ensuring crew health, captain confidence, and operational success.</p>
+        </div>
+
+        <!-- Layout 1: DOD Kit hardware -->
+        <div class="services-layout reveal">
+          <div class="service-visual">
+            <img src="assets/Ocean Doc closed case.png" alt="The Doc on Deck (DOD) Kit — rugged telemedicine case closed" loading="lazy" decoding="async">
+          </div>
+          <div class="service-content">
+            <div class="service-tag">
+              <i class="fas fa-briefcase-medical" aria-hidden="true"></i> SAHPRA-Approved Hardware
+            </div>
+            <h3>The DOD Kit — Doc on Deck</h3>
+            <p>A purpose-built, rugged telemedicine hardware kit designed for the marine environment. Everything a doctor needs to assess and treat your crew remotely — in one weatherproof case.</p>
+            <div class="kit-list" aria-label="Kit contents">
+              <div class="kit-list-item">
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                <span><strong>Vitals Suite:</strong> Pulse, temperature, oxygen saturation, blood pressure &amp; 3-lead ECG</span>
+              </div>
+              <div class="kit-list-item">
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                <span><strong>Diagnostic Tools:</strong> Glucometer, digital otoscope, dermascope &amp; stethoscope</span>
+              </div>
+              <div class="kit-list-item">
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                <span><strong>Microsoft Tablet:</strong> Encrypted telemedicine software for live video consultations</span>
+              </div>
+              <div class="kit-list-item">
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                <span><strong>Field Ready:</strong> USB hub, power bank &amp; rugged protective carry case</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Layout 2: Telemedicine software -->
+        <div class="services-layout reverse reveal">
+          <div class="service-visual">
+            <img src="assets/software.JPG" alt="Ocean Doctor encrypted telemedicine software interface" loading="lazy" decoding="async">
+          </div>
+          <div class="service-content">
+            <div class="service-tag">
+              <i class="fas fa-lock" aria-hidden="true"></i> Encrypted Platform
+            </div>
+            <h3>Encrypted Telemedicine Web App</h3>
+            <p>Our secure, purpose-built digital platform powers every consultation. It supports live video, delayed consult uploads, on-deck patient monitoring, secure crew health records, and reporting for vessel owners.</p>
+            <div class="kit-list">
+              <div class="kit-list-item">
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                <span><strong>Live &amp; Scheduled:</strong> 24/7 medical consultations — phone, WhatsApp, or video</span>
+              </div>
+              <div class="kit-list-item">
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                <span><strong>On-Deck Monitoring:</strong> Remote patient monitoring for unwell crew members at sea</span>
+              </div>
+              <div class="kit-list-item">
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                <span><strong>Full Prescription Service:</strong> Prescriptions, pathology, imaging &amp; referral coordination</span>
+              </div>
+              <div class="kit-list-item">
+                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                <span><strong>Owner Reports:</strong> Reporting and support for vessel owners and company management</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Services feature strip -->
+        <div class="section-head reveal" style="margin-top:80px;margin-bottom:40px">
+          <div class="section-label">Services Unlike Any Other</div>
+          <h2>What We Provide</h2>
+          <div class="divider"></div>
+        </div>
+        <div class="service-features">
+          <div class="feature-card reveal">
+            <div class="feature-icon"><i class="fas fa-phone-alt" aria-hidden="true"></i></div>
+            <h4>24/7 Medical Advice</h4>
+            <p>General medical advice via phone and WhatsApp — always-on access to qualified doctors</p>
+          </div>
+          <div class="feature-card reveal reveal-delay-1">
+            <div class="feature-icon"><i class="fas fa-video" aria-hidden="true"></i></div>
+            <h4>Live Consultations</h4>
+            <p>Book or consult immediately — live or scheduled — with or without the DOD Kit</p>
+          </div>
+          <div class="feature-card reveal reveal-delay-2">
+            <div class="feature-icon"><i class="fas fa-heartbeat" aria-hidden="true"></i></div>
+            <h4>On-Deck Monitoring</h4>
+            <p>Patient monitoring for unwell crew while offshore, with structured follow-up</p>
+          </div>
+          <div class="feature-card reveal reveal-delay-3">
+            <div class="feature-icon"><i class="fas fa-hospital" aria-hidden="true"></i></div>
+            <h4>Docked Capabilities</h4>
+            <p>Follow-ups and minor surgical procedures when vessels are in port</p>
+          </div>
+          <div class="feature-card reveal reveal-delay-4">
+            <div class="feature-icon"><i class="fas fa-pills" aria-hidden="true"></i></div>
+            <h4>Full Care Coordination</h4>
+            <p>Prescriptions, pathology, imaging &amp; specialist referral coordination</p>
+          </div>
+          <div class="feature-card reveal">
+            <div class="feature-icon"><i class="fas fa-file-medical-alt" aria-hidden="true"></i></div>
+            <h4>Owner Reporting</h4>
+            <p>Detailed health reports and support documentation for vessel owners and companies</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         3 C's — CREW | CAPTAINS | COMPANY
+    ============================================ -->
+    <section class="dark" aria-labelledby="three-cs-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-label on-dark">Benefits</div>
+          <h2 id="three-cs-title">3 C's of the 7 Seas</h2>
+          <div class="divider"></div>
+          <p style="color:rgba(255,255,255,0.72);max-width:580px;margin:0 auto;font-size:1rem;line-height:1.75">Ocean Doctor serves every stakeholder in the maritime chain — from individual crew to the captain on the bridge to the company in the boardroom.</p>
+        </div>
+
+        <div class="three-c-grid">
+
+          <div class="c-card reveal">
+            <div class="c-icon"><i class="fas fa-users" aria-hidden="true"></i></div>
+            <h3>Crew</h3>
+            <ul aria-label="Benefits for crew members">
+              <li>Peace of mind knowing healthcare is always available</li>
+              <li>Feeling reassured and cared for by their employers</li>
+              <li>Early intervention and privately addressing acute and chronic conditions</li>
+            </ul>
+          </div>
+
+          <div class="c-card reveal reveal-delay-1">
+            <div class="c-icon"><i class="fas fa-anchor" aria-hidden="true"></i></div>
+            <h3>Captains</h3>
+            <ul aria-label="Benefits for vessel captains">
+              <li>Expert medical guidance to assess illness or injury on board</li>
+              <li>Removes the burden of critical medical decision-making at sea</li>
+              <li>Prevents costly or unnecessary returns to shore</li>
+            </ul>
+          </div>
+
+          <div class="c-card reveal reveal-delay-2">
+            <div class="c-icon"><i class="fas fa-building" aria-hidden="true"></i></div>
+            <h3>Company &amp; Cost</h3>
+            <ul aria-label="Benefits for fishing companies and vessel owners">
+              <li>Save money on lost time, fuel, and fishing disruption</li>
+              <li>Boost crew wellbeing and long-term retention</li>
+              <li>Demonstrate corporate social responsibility</li>
+              <li>Fully tax deductible as an employee cost</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         HOW IT WORKS
+    ============================================ -->
+    <section id="how-it-works" aria-labelledby="how-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-label">Our Plug &amp; Play Solution</div>
+          <h2 id="how-title">All You Need Is WiFi</h2>
+          <div class="divider"></div>
+          <p class="lead-text centered">Getting a doctor to your crew is as simple as four steps. No complex setup. No special training required. Just WiFi and our dedicated team.</p>
+        </div>
+
+        <div class="steps-grid" role="list">
+
+          <div class="step reveal" role="listitem">
+            <div class="step-num">1</div>
+            <div>
+              <div class="step-icon"><i class="fab fa-whatsapp" aria-hidden="true"></i></div>
+              <h4>Reach Out</h4>
+              <p>WhatsApp our Ocean Doctor line or call our number to reach a doctor directly</p>
+            </div>
+          </div>
+
+          <div class="step reveal reveal-delay-1" role="listitem">
+            <div class="step-num">2</div>
+            <div>
+              <div class="step-icon"><i class="fas fa-stethoscope" aria-hidden="true"></i></div>
+              <h4>We Assess</h4>
+              <p>We assess the situation and determine the need for a full consultation</p>
+            </div>
+          </div>
+
+          <div class="step reveal reveal-delay-2" role="listitem">
+            <div class="step-num">3</div>
+            <div>
+              <div class="step-icon"><i class="fas fa-calendar-check" aria-hidden="true"></i></div>
+              <h4>Consult</h4>
+              <p>Book a scheduled consultation or consult immediately — with or without the DOD Kit</p>
+            </div>
+          </div>
+
+          <div class="step reveal reveal-delay-3" role="listitem">
+            <div class="step-num">4</div>
+            <div>
+              <div class="step-icon"><i class="fas fa-clipboard-check" aria-hidden="true"></i></div>
+              <h4>Treatment Plan</h4>
+              <p>Diagnosis and treatment plan initiated, with appropriate follow-up on deck or on dock — keeping crews offshore</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         IMPACT
+    ============================================ -->
+    <section id="impact" class="alt" aria-labelledby="impact-title">
+      <div class="container">
+        <div class="section-head reveal">
+          <div class="section-label">Real-World Difference</div>
+          <h2 id="impact-title">Our Impact at Sea</h2>
+          <div class="divider"></div>
+          <p class="lead-text centered">Every consultation, every intervention, every kept crew member offshore — it all adds up to safer operations, better companies, and crews that come home healthy.</p>
+        </div>
+
         <div class="impact-grid">
-          <div class="impact-card"><i class="fas fa-heartbeat"></i><h3>Enhanced Crew Satisfaction</h3><p>Crew members and their families have peace of mind when going to sea, feeling protected, cared for, and reassured by their employers.</p></div>
-          <div class="impact-card"><i class="fas fa-ship"></i><h3>Reduced Medical Evacuations</h3><p>We minimize unplanned returns to shore by addressing health concerns early, saving costs on fuel and operations while ensuring a smoother voyage.</p></div>
-          <div class="impact-card"><i class="fas fa-user-tie"></i><h3>Empowered Captains</h3><p>Captains are relieved of the burden of judging the severity of medical issues alone, with access to expert medical support to make informed decisions.</p></div>
+          <div class="impact-card reveal">
+            <div class="impact-icon teal"><i class="fas fa-heartbeat" aria-hidden="true"></i></div>
+            <h3>Enhanced Crew Wellbeing</h3>
+            <p>Crew members and their families have peace of mind at sea — feeling protected, cared for, and valued by their employers through genuine access to healthcare.</p>
+          </div>
+          <div class="impact-card reveal reveal-delay-1">
+            <div class="impact-icon orange"><i class="fas fa-ship" aria-hidden="true"></i></div>
+            <h3>Reduced Medical Evacuations</h3>
+            <p>We minimise unplanned returns to shore through early intervention — saving fuel costs, catch time, and operational disruption for vessel owners.</p>
+          </div>
+          <div class="impact-card reveal reveal-delay-2">
+            <div class="impact-icon navy"><i class="fas fa-user-tie" aria-hidden="true"></i></div>
+            <h3>Empowered Captains</h3>
+            <p>Captains are relieved of the burden of judging medical severity alone — with expert guidance to make informed, defensible decisions at sea.</p>
+          </div>
+          <div class="impact-card reveal reveal-delay-3">
+            <div class="impact-icon teal"><i class="fas fa-chart-bar" aria-hidden="true"></i></div>
+            <h3>Increased Productivity</h3>
+            <p>Healthier crews stay offshore longer, catch more, and return with higher morale — directly improving fleet efficiency and company profitability.</p>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- ============================================
+         CONTACT
+    ============================================ -->
     <section id="contact" aria-labelledby="contact-title">
       <div class="container">
-        <h2 style="text-align: center;"id="contact-title">Contact Us</h2>
-        <p style="text-align: center;" class="lead-muted">Email us at <a href="mailto:info@oceandoctor.co.za">info@oceandoctor.co.za</a> or send a message below.</p>
-        
-        <!-- Updated Contact Form -->
-        <form id="contact-form" aria-label="Contact form">
-            <!--
-            IMPORTANT SETUP:
-            1. Go to https://web3forms.com/
-            2. Click "Create your Access Key".
-            3. Enter your email: info@oceandoctor.co.za
-            4. You will receive an email with your access key.
-            5. Replace "YOUR_ACCESS_KEY_HERE" below with the key you received.
-            -->
-            <input type="hidden" name="access_key" value="7e91afbf-c07d-4e52-aabe-37bd242d13d2">
-            <input type="hidden" name="subject" value="New Contact Form Submission from Ocean Doctor Website">
-            <input type="hidden" name="from_name" value="Ocean Doctor Contact">
-            <input type="hidden" name="redirect" value="https://web3forms.com/success">
-
+        <div class="contact-layout">
+          <div class="contact-info reveal">
             <div>
-              <label for="name">Your name</label>
-              <input id="name" name="name" type="text" required>
-            </div>
-            
-            <div>
-              <label for="email">Email</label>
-              <input id="email" type="email" name="email" required>
+              <div class="section-label">Get in Touch</div>
+              <h2 id="contact-title">Ready to Care for Your Crew?</h2>
+              <div class="divider" style="margin:0 0 20px"></div>
+              <p class="lead-text">Whether you're a vessel owner, fishing company, or maritime operator — reach out to learn how Ocean Doctor can be onboard your next voyage.</p>
             </div>
 
-            <div>
-              <label for="company">Company (optional)</label>
-              <input id="company" name="company" type="text">
+            <div class="contact-detail">
+              <div class="contact-detail-icon"><i class="fas fa-envelope" aria-hidden="true"></i></div>
+              <div>
+                <h4>Email</h4>
+                <a href="mailto:info@oceandoctor.co.za">info@oceandoctor.co.za</a>
+              </div>
             </div>
 
-            <div>
-              <label for="message">Message</label>
-              <textarea id="message" name="message" required></textarea>
+            <div class="contact-detail">
+              <div class="contact-detail-icon"><i class="fas fa-globe" aria-hidden="true"></i></div>
+              <div>
+                <h4>Website</h4>
+                <a href="https://www.oceandoctor.co.za" target="_blank" rel="noopener noreferrer">www.oceandoctor.co.za</a>
+              </div>
             </div>
 
-            <!-- Turnstile Captcha (Recommended for spam protection) -->
-            <div class="h-captcha" data-captcha="true"></div>
-            
-            <!-- Result Message Area -->
-            <div id="result-message"></div>
+            <div class="contact-detail">
+              <div class="contact-detail-icon"><i class="fab fa-whatsapp" aria-hidden="true"></i></div>
+              <div>
+                <h4>WhatsApp</h4>
+                <span>060 520 0178</span>
+              </div>
+            </div>
 
-            <button type="submit" id="submit-button" class="btn">
-                <span id="button-text">Send message</span>
-                <div id="button-spinner" class="spinner" style="display: none;"></div>
-            </button>
-        </form>
+            <div class="contact-detail">
+              <div class="contact-detail-icon"><i class="fas fa-phone-alt" aria-hidden="true"></i></div>
+              <div>
+                <h4>Landline</h4>
+                <span>021 330 5832</span>
+              </div>
+            </div>
+
+            <div style="background:linear-gradient(135deg,var(--navy-deep),var(--navy-bright));border-radius:var(--radius);padding:24px;color:#fff;margin-top:8px">
+              <div style="font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal-soft);margin-bottom:8px">Response Time</div>
+              <div style="font-size:1rem;font-weight:600;margin-bottom:4px">24/7 Availability</div>
+              <div style="font-size:0.85rem;opacity:0.75">Doctors available around the clock for maritime emergencies and consultations</div>
+            </div>
+          </div>
+
+          <div class="reveal reveal-delay-1">
+            <form id="contact-form" aria-label="Contact Ocean Doctor">
+              <input type="hidden" name="access_key" value="7e91afbf-c07d-4e52-aabe-37bd242d13d2">
+              <input type="hidden" name="subject" value="New Contact Form Submission from Ocean Doctor Website">
+              <input type="hidden" name="from_name" value="Ocean Doctor Contact">
+
+              <div style="margin-bottom:4px">
+                <h3 style="font-size:1.2rem;margin-bottom:6px;color:var(--navy-deep)">Send a Message</h3>
+                <p style="font-size:0.88rem;color:var(--muted)">We'll get back to you as soon as possible.</p>
+              </div>
+
+              <div class="form-row">
+                <div>
+                  <label for="name">Your Name <span aria-hidden="true" style="color:var(--accent)">*</span></label>
+                  <input id="name" name="name" type="text" required autocomplete="name" placeholder="John Smith">
+                </div>
+                <div>
+                  <label for="email">Email Address <span aria-hidden="true" style="color:var(--accent)">*</span></label>
+                  <input id="email" type="email" name="email" required autocomplete="email" placeholder="john@company.co.za">
+                </div>
+              </div>
+
+              <div>
+                <label for="company">Company (optional)</label>
+                <input id="company" name="company" type="text" autocomplete="organization" placeholder="Your fishing company or fleet">
+              </div>
+
+              <div>
+                <label for="message">Message <span aria-hidden="true" style="color:var(--accent)">*</span></label>
+                <textarea id="message" name="message" required placeholder="Tell us about your fleet, crew size, or healthcare needs..."></textarea>
+              </div>
+
+              <div class="h-captcha" data-captcha="true"></div>
+              <div id="result-message" role="status" aria-live="polite"></div>
+
+              <button type="submit" id="submit-button" class="btn btn-primary" style="width:100%;justify-content:center;padding:15px 28px;font-size:1rem">
+                <span id="button-text">Send Message</span>
+                <div id="button-spinner" class="spinner" style="display:none" aria-hidden="true"></div>
+              </button>
+            </form>
+          </div>
+        </div>
       </div>
     </section>
+
   </main>
 
-  <footer>
+  <!-- ============================================
+       FOOTER
+  ============================================ -->
+  <footer role="contentinfo">
     <div class="container">
-      <p>&copy; 2025 Ocean Doctor (PTY) Ltd — All rights reserved.</p>
-      <p><a href="mailto:info@oceandoctor.co.za" style="color:rgba(255,255,255,0.9)">info@oceandoctor.co.za</a></p>
-      <!-- <p><a href="legal.html" target="_blank" rel="noopener noreferrer" style="color:rgba(255,255,255,0.9)">Terms & Conditions</a> -->
-</p>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="assets/Ocean Doc vector logo and words WHITE-cropped.png" alt="Ocean Doctor Maritime Healthcare Solutions" width="140" height="44" loading="lazy">
+          <p>Southern Africa's first dedicated maritime telemedicine provider — built specifically for the fishing and maritime industry.</p>
+          <div class="footer-tagline">Healthy Crew. Healthy Catch.</div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Navigate</h5>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#team">Our Team</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#impact">Our Impact</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <ul>
+            <li><a href="mailto:info@oceandoctor.co.za">info@oceandoctor.co.za</a></li>
+            <li><a href="https://www.oceandoctor.co.za" target="_blank" rel="noopener noreferrer">www.oceandoctor.co.za</a></li>
+            <li><a href="#contact">Send a Message</a></li>
+          </ul>
+          <div style="margin-top:20px;padding:14px 16px;background:rgba(42,180,180,0.12);border:1px solid rgba(42,180,180,0.2);border-radius:10px">
+            <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal-soft);margin-bottom:4px">24/7 Availability</div>
+            <div style="font-size:0.85rem;color:rgba(255,255,255,0.75)">Doctors always on call for maritime emergencies</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Ocean Doctor (PTY) Ltd — All rights reserved.</span>
+        <span>SAHPRA-Approved Maritime Telemedicine | Southern Africa</span>
+      </div>
     </div>
   </footer>
 
-  <!-- Web3Forms script must be before your form handling script -->
+  <!-- Scripts -->
   <script src="https://web3forms.com/client/script.js" async defer></script>
 
   <script>
-    // Simple accessible mobile menu
-    const toggle = document.querySelector('.menu-toggle');
-    const menu = document.getElementById('site-menu');
-    toggle?.addEventListener('click', ()=>{
-      const expanded = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', String(!expanded));
-      menu.classList.toggle('mobile-nav');
-      // A bit more robust display toggling
-      if (menu.classList.contains('mobile-nav')) {
-          menu.style.display = 'flex';
-      } else {
-          menu.style.display = '';
+  (function () {
+    'use strict';
+
+    // ============================================
+    // MOBILE MENU
+    // ============================================
+    const toggleBtn = document.getElementById('menu-toggle-btn');
+    const overlay   = document.getElementById('mobile-overlay');
+    const closeBtn  = document.getElementById('mobile-close-btn');
+
+    function openMenu() {
+      overlay.classList.add('is-open');
+      toggleBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+    }
+    function closeMenu() {
+      overlay.classList.remove('is-open');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      toggleBtn.focus();
+    }
+
+    toggleBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+
+    overlay.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        if (overlay.classList.contains('is-open')) closeMenu();
       }
     });
 
-    // Close mobile menu when a link is clicked
-    document.querySelectorAll('#site-menu a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (menu.classList.contains('mobile-nav')) {
-                toggle.click();
-            }
-        });
-    });
-
-    // Modal bios
-    document.querySelectorAll('[data-bio]').forEach(btn=>{
-      const modalId = btn.getAttribute('data-bio');
-      const modal = document.querySelector(modalId);
-      btn.addEventListener('click', ()=>{
-        modal?.setAttribute('open','');
-        modal?.setAttribute('aria-hidden','false');
-        modal?.querySelector('[data-close]')?.focus();
-        btn.setAttribute('aria-expanded','true');
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
-      });
-    });
-    
-    function closeModal(modal) {
-        modal?.removeAttribute('open');
-        modal?.setAttribute('aria-hidden','true');
-        document.body.style.overflow = ''; // Restore scrolling
-        // Refocus the button that opened the modal for better accessibility
-        const opener = document.querySelector(`[data-bio="#${modal.id}"]`);
-        opener?.focus();
+    // ============================================
+    // TEAM BIO MODALS
+    // ============================================
+    function openModal(modal, opener) {
+      modal.setAttribute('open', '');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      var focusTarget = modal.querySelector('[data-close]');
+      if (focusTarget) focusTarget.focus();
+      if (opener) opener.setAttribute('aria-expanded', 'true');
     }
 
-    document.querySelectorAll('.modal [data-close]').forEach(btn=>{
-      btn.addEventListener('click', (e)=>{
-        const modal = btn.closest('.modal');
-        closeModal(modal);
+    function closeModal(modal) {
+      modal.removeAttribute('open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      var openerSelector = '[data-bio="#' + modal.id + '"]';
+      var opener = document.querySelector(openerSelector);
+      if (opener) {
+        opener.setAttribute('aria-expanded', 'false');
+        opener.focus();
+      }
+    }
+
+    document.querySelectorAll('[data-bio]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var modalId = btn.getAttribute('data-bio');
+        var modal   = document.querySelector(modalId);
+        if (modal) openModal(modal, btn);
       });
     });
 
-    // Click outside to close
-    document.querySelectorAll('.modal').forEach(m=>{
-      m.addEventListener('click', (e)=>{
-        if(e.target === m){ closeModal(m); }
+    document.querySelectorAll('.modal [data-close]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var modal = btn.closest('.modal');
+        if (modal) closeModal(modal);
       });
     });
-    
-    // Close modal with Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === "Escape") {
-            const openModal = document.querySelector('.modal[open]');
-            if (openModal) {
-                closeModal(openModal);
-            }
-        }
+
+    document.querySelectorAll('.modal').forEach(function (m) {
+      m.addEventListener('click', function (e) {
+        if (e.target === m) closeModal(m);
+      });
     });
 
-    // --- NEW CONTACT FORM HANDLER ---
-    const form = document.getElementById('contact-form');
-    const resultMessage = document.getElementById('result-message');
-    const submitButton = document.getElementById('submit-button');
-    const buttonText = document.getElementById('button-text');
-    const buttonSpinner = document.getElementById('button-spinner');
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        var openModal = document.querySelector('.modal[open]');
+        if (openModal) closeModal(openModal);
+      }
+    });
 
-    form.addEventListener('submit', function (e) {
+    // ============================================
+    // CONTACT FORM
+    // ============================================
+    var form         = document.getElementById('contact-form');
+    var resultMsg    = document.getElementById('result-message');
+    var submitBtn    = document.getElementById('submit-button');
+    var btnText      = document.getElementById('button-text');
+    var btnSpinner   = document.getElementById('button-spinner');
+
+    if (form) {
+      form.addEventListener('submit', function (e) {
         e.preventDefault();
-        
-        // Show loading state
-        buttonText.textContent = 'Sending...';
-        buttonSpinner.style.display = 'block';
-        submitButton.disabled = true;
+        btnText.textContent = 'Sending…';
+        btnSpinner.style.display = 'block';
+        submitBtn.disabled = true;
 
-        const formData = new FormData(form);
-        const object = {};
-        formData.forEach((value, key) => {
-            object[key] = value;
-        });
-        const json = JSON.stringify(object);
-        
-        resultMessage.innerHTML = ""; // Clear previous message
+        var formData = new FormData(form);
+        var obj = {};
+        formData.forEach(function (val, key) { obj[key] = val; });
+
+        resultMsg.innerHTML = '';
 
         fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: json
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(obj)
         })
-        .then(async (response) => {
-            let jsonResponse = await response.json();
-            if (response.status == 200) {
-                resultMessage.innerHTML = `<span style="color: #16a34a;">${jsonResponse.message}</span>`;
-                form.reset(); // Reset form on success
-            } else {
-                console.log(response);
-                resultMessage.innerHTML = `<span style="color: #dc2626;">${jsonResponse.message}</span>`;
-            }
+        .then(function (res) { return res.json().then(function (data) { return { status: res.status, data: data }; }); })
+        .then(function (result) {
+          if (result.status === 200) {
+            resultMsg.innerHTML = '<span style="color:#16a34a;font-size:0.92rem">' + result.data.message + '</span>';
+            form.reset();
+          } else {
+            resultMsg.innerHTML = '<span style="color:#dc2626;font-size:0.92rem">' + result.data.message + '</span>';
+          }
         })
-        .catch(error => {
-            console.log(error);
-            resultMessage.innerHTML = `<span style="color: #dc2626;">Something went wrong! Please try again.</span>`;
+        .catch(function () {
+          resultMsg.innerHTML = '<span style="color:#dc2626;font-size:0.92rem">Something went wrong. Please try again or email us directly.</span>';
         })
-        .finally(() => {
-            // Reset button state
-            buttonText.textContent = 'Send Message';
-            buttonSpinner.style.display = 'none';
-            submitButton.disabled = false;
-            
-            // Clear the message after 5 seconds
-            setTimeout(() => {
-                resultMessage.innerHTML = '';
-            }, 5000);
+        .finally(function () {
+          btnText.textContent = 'Send Message';
+          btnSpinner.style.display = 'none';
+          submitBtn.disabled = false;
+          setTimeout(function () { resultMsg.innerHTML = ''; }, 6000);
         });
-    });
-
-
-    // Highlight current nav link while scrolling
-    const navLinks = document.querySelectorAll('nav a');
-    const sections = document.querySelectorAll('main section');
-    const observerOptions = {
-      root: null, // relative to the viewport
-      rootMargin: '0px',
-      threshold: 0.55 // 55% of the section must be visible
-    };
-    
-    const io = new IntersectionObserver(entries=>{
-      entries.forEach(entry=>{
-        const id = entry.target.id;
-        const link = document.querySelector(`nav a[href='#${id}']`);
-        if(entry.isIntersecting && entry.intersectionRatio >= 0.55){
-          navLinks.forEach(l=>l.removeAttribute('aria-current'));
-          link?.setAttribute('aria-current','page');
-        }
       });
-    }, observerOptions);
-    sections.forEach(s=>io.observe(s));
+    }
+
+    // ============================================
+    // NAV ACTIVE STATE ON SCROLL
+    // ============================================
+    var navLinks = document.querySelectorAll('nav a');
+    var sections = document.querySelectorAll('main section[id]');
+
+    if ('IntersectionObserver' in window && sections.length) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            navLinks.forEach(function (link) {
+              var href = link.getAttribute('href');
+              if (href === '#' + entry.target.id) {
+                link.setAttribute('aria-current', 'page');
+              } else {
+                link.removeAttribute('aria-current');
+              }
+            });
+          }
+        });
+      }, { root: null, rootMargin: '-40% 0px -55%', threshold: 0 });
+
+      sections.forEach(function (sec) { io.observe(sec); });
+    }
+
+    // ============================================
+    // REVEAL ON SCROLL
+    // ============================================
+    var reveals = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && reveals.length) {
+      var revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      reveals.forEach(function (el) { revealObserver.observe(el); });
+    } else {
+      // Fallback: show all if no IntersectionObserver
+      reveals.forEach(function (el) { el.classList.add('visible'); });
+    }
+
+  })();
   </script>
+
 </body>
 </html>
